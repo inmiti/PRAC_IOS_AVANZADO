@@ -24,6 +24,7 @@
 		1FE276552AE2CDAF00F35082 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276542AE2CDAF00F35082 /* SplashViewModel.swift */; };
 		1FE276572AE2F08800F35082 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276562AE2F08800F35082 /* LoginViewModel.swift */; };
 		1FE276592AE2F0A200F35082 /* HeroesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276582AE2F0A200F35082 /* HeroesViewModel.swift */; };
+		1FE2765B2AE302B500F35082 /* ApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2765A2AE302B500F35082 /* ApiProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		1FE276542AE2CDAF00F35082 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		1FE276562AE2F08800F35082 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1FE276582AE2F0A200F35082 /* HeroesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesViewModel.swift; sourceTree = "<group>"; };
+		1FE2765A2AE302B500F35082 /* ApiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 		1FE276442AE2932100F35082 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				1FE2765A2AE302B500F35082 /* ApiProvider.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				1FE276592AE2F0A200F35082 /* HeroesViewModel.swift in Sources */,
 				1FE276572AE2F08800F35082 /* LoginViewModel.swift in Sources */,
 				1FE276122AE2922800F35082 /* SceneDelegate.swift in Sources */,
+				1FE2765B2AE302B500F35082 /* ApiProvider.swift in Sources */,
 				1FE2764F2AE2A3BE00F35082 /* LoginViewController.swift in Sources */,
 				1FE2761A2AE2922800F35082 /* AppInmaBautista.xcdatamodeld in Sources */,
 			);
