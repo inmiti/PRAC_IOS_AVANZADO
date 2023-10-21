@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol HeroesViewControllerDelegate {
+    
+}
+
 class HeroesViewController: UIViewController {
+    
+    var viewModel: HeroesViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

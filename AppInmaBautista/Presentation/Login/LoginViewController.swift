@@ -9,8 +9,9 @@ import UIKit
 
 // MARK: - Protocol -
 protocol LoginViewControllerDelegate {
-    func loginButtonPressed(email: String, password: String)
+    func loginButtonPressed(email: String?, password: String?)
     var viewState: ((LoginViewState) -> Void)? { get set }
+    var heroesViewModel: HeroesViewControllerDelegate { get }
 }
 
 // MARK: - View State -
@@ -28,10 +29,9 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBActions -
     @IBAction func loginButton(_ sender: Any) {
-        func loginButtonPressed(email: String, password: String) {
-            emailTextField.text = email
-            passwordTextField.text = password
-        }
+        viewModel?.loginButtonPressed(
+            email: emailTextField.text,
+            password: passwordTextField.text)
     }
     
     // MARK: - Properties -
@@ -48,19 +48,25 @@ class LoginViewController: UIViewController {
         // Ocultar el botón de retroceso en la barra de navegación
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard segue.identifier = "LOGIN_TO_HEROES"
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "LOGIN_TO_HEROES",
+              let heroesViewController = segue.destination as? HeroesViewController else {
+            return
+        }
+        heroesViewController.viewModel = viewModel?.heroesViewModel
+    }
     // MARK: - Public funcions -
     func setObserver() {
         viewModel?.viewState = { [weak self] state in
-            switch state {
-            case .errorEmail(let error):
-                self?.errorEmailLabel.text = error
-            case .errorPassword(let error):
-                self?.errorPasswordLabel.text = error
-            case .navigateToHeroes:
-                self?.performSegue(withIdentifier: "LOGIN_TO_HEROES", sender: nil)
+            DispatchQueue.main.async {
+                switch state {
+                case .errorEmail(let error):
+                    self?.errorEmailLabel.text = error
+                case .errorPassword(let error):
+                    self?.errorPasswordLabel.text = error
+                case .navigateToHeroes:
+                    self?.performSegue(withIdentifier: "LOGIN_TO_HEROES", sender: nil)
+                }
             }
         }
     }
