@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FE0A3752AE3E76A0024850D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE0A3742AE3E76A0024850D /* KeychainSwift */; };
+		1FE0A3772AE3E78F0024850D /* SecureDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */; };
 		1FE276102AE2922800F35082 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2760F2AE2922800F35082 /* AppDelegate.swift */; };
 		1FE276122AE2922800F35082 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276112AE2922800F35082 /* SceneDelegate.swift */; };
 		1FE276142AE2922800F35082 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276132AE2922800F35082 /* SplashViewController.swift */; };
@@ -45,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDataProvider.swift; sourceTree = "<group>"; };
 		1FE2760C2AE2922800F35082 /* AppInmaBautista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppInmaBautista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE2760F2AE2922800F35082 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FE276112AE2922800F35082 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FE0A3752AE3E76A0024850D /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				1FE276182AE2922800F35082 /* AppInmaBautista.xcdatamodeld */,
+				1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -250,6 +255,9 @@
 			dependencies = (
 			);
 			name = AppInmaBautista;
+			packageProductDependencies = (
+				1FE0A3742AE3E76A0024850D /* KeychainSwift */,
+			);
 			productName = AppInmaBautista;
 			productReference = 1FE2760C2AE2922800F35082 /* AppInmaBautista.app */;
 			productType = "com.apple.product-type.application";
@@ -322,6 +330,9 @@
 				Base,
 			);
 			mainGroup = 1FE276032AE2922800F35082;
+			packageReferences = (
+				1FE0A3732AE3E76A0024850D /* XCRemoteSwiftPackageReference "keychain-swift" */,
+			);
 			productRefGroup = 1FE2760D2AE2922800F35082 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -369,6 +380,7 @@
 			files = (
 				1FE276532AE2A3FF00F35082 /* HeroesViewController.swift in Sources */,
 				1FE276142AE2922800F35082 /* SplashViewController.swift in Sources */,
+				1FE0A3772AE3E78F0024850D /* SecureDataProvider.swift in Sources */,
 				1FE276102AE2922800F35082 /* AppDelegate.swift in Sources */,
 				1FE276552AE2CDAF00F35082 /* SplashViewModel.swift in Sources */,
 				1FE276592AE2F0A200F35082 /* HeroesViewModel.swift in Sources */,
@@ -718,6 +730,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1FE0A3732AE3E76A0024850D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1FE0A3742AE3E76A0024850D /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FE0A3732AE3E76A0024850D /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1FE276182AE2922800F35082 /* AppInmaBautista.xcdatamodeld */ = {

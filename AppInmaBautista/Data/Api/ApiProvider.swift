@@ -7,10 +7,24 @@
 
 import Foundation
 
-class ApiProvider {
+// MARK: - Protocol -
+protocol ApiProviderProtocol {
+    func login(email: String,
+               password: String,
+               completion: @escaping(Result<String, NetworkErrors>) -> Void)
+}
+
+// MARK: - NetoworkErrors -
+enum NetworkErrors: Error {
+    case notFormedUrl
+    case decodingFailed
+    case unknownError
+    case noData
+    case statusCode(code: Int?)
+}
+
+class ApiProvider: ApiProviderProtocol {
     // MARK: - Properties -
-    
-    var token = ""
     private var baseComponents: URLComponents {
         var components = URLComponents()
         components.scheme = "https"
@@ -26,15 +40,6 @@ class ApiProvider {
     
     private enum PathAPI {
         static let login = "/api/auth/login"
-    }
-    
-    enum NetworkErrors: Error {
-        case notFormedUrl
-        case decodingFailed
-        case unknownError
-        case noData
-        case statusCode(code: Int?)
-        
     }
     
     // MARK: - Public functions -
@@ -72,7 +77,6 @@ class ApiProvider {
             
             let httpUrlResponse = response as? HTTPURLResponse
             let statusCode = httpUrlResponse?.statusCode
-            
             guard statusCode == 200 else {
                 completion(.failure(.statusCode(code: statusCode)))
                 return
@@ -82,13 +86,10 @@ class ApiProvider {
                 completion(.failure(.decodingFailed))
                 return
             }
-            
             completion(.success(token))
+            
         }
         task.resume()
-        
         }
-        
-        
     }
 
