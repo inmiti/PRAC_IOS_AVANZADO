@@ -26,6 +26,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorEmailLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorPasswordLabel: UILabel!
+
+    // MARK: - Properties -
+    var viewModel: LoginViewControllerDelegate?
     
     // MARK: - IBActions -
     @IBAction func loginButton(_ sender: Any) {
@@ -33,9 +36,6 @@ class LoginViewController: UIViewController {
             email: emailTextField.text,
             password: passwordTextField.text)
     }
-    
-    // MARK: - Properties -
-    var viewModel: LoginViewControllerDelegate?
     
     // MARK: - Lifecycle -
     override func viewDidLoad() {
@@ -50,9 +50,7 @@ class LoginViewController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "LOGIN_TO_HEROES",
-              let heroesViewController = segue.destination as? HeroesViewController else {
-            return
-        }
+              let heroesViewController = segue.destination as? HeroesViewController else {return}
         heroesViewController.viewModel = viewModel?.heroesViewModel
     }
     // MARK: - Public funcions -
@@ -60,12 +58,12 @@ class LoginViewController: UIViewController {
         viewModel?.viewState = { [weak self] state in
             DispatchQueue.main.async {
                 switch state {
-                case .errorEmail(let error):
-                    self?.errorEmailLabel.text = error
-                case .errorPassword(let error):
-                    self?.errorPasswordLabel.text = error
-                case .navigateToHeroes:
-                    self?.performSegue(withIdentifier: "LOGIN_TO_HEROES", sender: nil)
+                    case .errorEmail(let error):
+                        self?.errorEmailLabel.text = error
+                    case .errorPassword(let error):
+                        self?.errorPasswordLabel.text = error
+                    case .navigateToHeroes:
+                        self?.performSegue(withIdentifier: "LOGIN_TO_HEROES", sender: nil)
                 }
             }
         }

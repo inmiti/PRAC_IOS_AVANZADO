@@ -36,15 +36,18 @@ class LoginViewModel: LoginViewControllerDelegate {
                 self.viewState?(.errorPassword(error: "Introduzca un password válido"))
                 return
             }
-            self.apiProvider.login(email: email ?? "", password: password ?? "") { [weak self] result in
-                switch result {
-                case .success(let token):
-                    self?.secureDataProvider.saveToken(token: token)
-                    self?.viewState?(.navigateToHeroes)
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
+            
+            self.setLoggin(email: email, password: password)
+            
+//            self.apiProvider.login(email: email ?? "", password: password ?? "") { [weak self] result in
+//                switch result {
+//                    case .success(let token):
+//                        self?.secureDataProvider.saveToken(token: token)
+//                        self?.viewState?(.navigateToHeroes)
+//                    case .failure(let error):
+//                        print("Error: \(error)")
+//                }
+//            }
         }
     }
     // MARK: - Private functions -
@@ -54,6 +57,19 @@ class LoginViewModel: LoginViewControllerDelegate {
 
     private func isvalid(password:String?) -> Bool {
         password?.isEmpty == false && (password?.count ?? 0 ) >= 4
+    }
+    
+    private func setLoggin(email: String?, password: String?) {
+        apiProvider.login(email: email ?? "", password: password ?? "") { [weak self] result in
+            switch result {
+                case .success(let token):
+                    self?.secureDataProvider.saveToken(token: token)
+                    self?.viewState?(.navigateToHeroes)
+                case .failure(let error):
+                    print("Error: \(error)")
+            }
+        }
+        
     }
   
 }

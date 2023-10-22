@@ -55,7 +55,7 @@ class ApiProvider: ApiProviderProtocol {
         }
         
         let loginString = String(format: "%@:%@", email, password)
-        guard let loginData = loginString.data(using: .utf8)?.base64EncodedData() else {
+        guard let loginData = loginString.data(using: .utf8)?.base64EncodedString() else {
             completion(.failure(NetworkErrors.decodingFailed))
             return
         }

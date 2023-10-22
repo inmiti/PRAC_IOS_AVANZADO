@@ -11,9 +11,16 @@ class SplashViewModel: SplashViewControllerDelegate {
     // - MARK: - Properties -
     var viewState: ((SplashViewState) -> Void)?
     
+    lazy var loginViewModel: LoginViewControllerDelegate = {
+        LoginViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
+    }()
+    
+    lazy var heroesViewModel: HeroesViewControllerDelegate = { HeroesViewModel()}()
+    
     private var isToken: Bool {
         (secureDataProvider.getToken()?.isEmpty == false) || ((secureDataProvider.getToken() != nil) == true)
     }
+    
     
     // MARK: - Dependencies -
     private let apiProvider: ApiProviderProtocol
