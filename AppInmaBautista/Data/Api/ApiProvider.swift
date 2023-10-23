@@ -5,13 +5,15 @@
 //  Created by ibautista on 20/10/23.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - Protocol -
 protocol ApiProviderProtocol {
     func login(email: String,
                password: String,
                completion: @escaping(Result<String, NetworkErrors>) -> Void)
+    func downloadImage(url: URL,
+                       completion: @escaping(Result< UIImage, NetworkErrors>) -> Void )
 }
 
 // MARK: - NetoworkErrors -
@@ -21,6 +23,7 @@ enum NetworkErrors: Error {
     case unknownError
     case noData
     case statusCode(code: Int?)
+    case notImage
 }
 
 class ApiProvider: ApiProviderProtocol {
@@ -91,5 +94,31 @@ class ApiProvider: ApiProviderProtocol {
         }
         task.resume()
         }
+    
+    func downloadImage(url: URL,
+                       completion: @escaping(Result< UIImage, NetworkErrors>) -> Void ) {
+        let task = session.dataTask(with: url) { data, response, error in
+            guard error == nil else {
+                completion(.failure(.unknownError))
+                return
+            }
+            guard let data else {
+                completion(.failure(.noData))
+                return
+            }
+            let httpUrlResponse = response as? HTTPURLResponse
+            let statusCode = httpUrlResponse?.statusCode
+            guard statusCode == 200 else {
+                completion(.failure(.statusCode(code: statusCode)))
+                return
+            }
+            
+            guard let image = UIImage(data: data) else {
+                completion(.failure(.notImage))
+                return
+            }
+            completion(.success(image))
+        }
     }
+}
 
