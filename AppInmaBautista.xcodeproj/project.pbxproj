@@ -10,6 +10,7 @@
 		1FE038402AE66C2400055DC1 /* HeroeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0383E2AE66C2400055DC1 /* HeroeCell.swift */; };
 		1FE038412AE66C2400055DC1 /* HeroeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE0383F2AE66C2400055DC1 /* HeroeCell.xib */; };
 		1FE038432AE6787F00055DC1 /* UImage+Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE038422AE6787F00055DC1 /* UImage+Remote.swift */; };
+		1FE038452AE6E34D00055DC1 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE038442AE6E34D00055DC1 /* Hero.swift */; };
 		1FE0A3752AE3E76A0024850D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE0A3742AE3E76A0024850D /* KeychainSwift */; };
 		1FE0A3772AE3E78F0024850D /* SecureDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */; };
 		1FE276102AE2922800F35082 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2760F2AE2922800F35082 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		1FE0383E2AE66C2400055DC1 /* HeroeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroeCell.swift; sourceTree = "<group>"; };
 		1FE0383F2AE66C2400055DC1 /* HeroeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroeCell.xib; sourceTree = "<group>"; };
 		1FE038422AE6787F00055DC1 /* UImage+Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UImage+Remote.swift"; sourceTree = "<group>"; };
+		1FE038442AE6E34D00055DC1 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDataProvider.swift; sourceTree = "<group>"; };
 		1FE2760C2AE2922800F35082 /* AppInmaBautista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppInmaBautista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE2760F2AE2922800F35082 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				1FE038422AE6787F00055DC1 /* UImage+Remote.swift */,
+				1FE038442AE6E34D00055DC1 /* Hero.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				1FE276122AE2922800F35082 /* SceneDelegate.swift in Sources */,
 				1FE2765B2AE302B500F35082 /* ApiProvider.swift in Sources */,
 				1FE038402AE66C2400055DC1 /* HeroeCell.swift in Sources */,
+				1FE038452AE6E34D00055DC1 /* Hero.swift in Sources */,
 				1FE2764F2AE2A3BE00F35082 /* LoginViewController.swift in Sources */,
 				1FE2761A2AE2922800F35082 /* AppInmaBautista.xcdatamodeld in Sources */,
 			);

@@ -8,24 +8,22 @@
 import UIKit
 
 class SplashViewModel: SplashViewControllerDelegate {
-    // - MARK: - Properties -
-    var viewState: ((SplashViewState) -> Void)?
-    
-    lazy var loginViewModel: LoginViewControllerDelegate = {
-        LoginViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
-    }()
-    
-    lazy var heroesViewModel: HeroesViewControllerDelegate = { HeroesViewModel()}()
-    
-    private var isToken: Bool {
-        (secureDataProvider.getToken()?.isEmpty == false) || ((secureDataProvider.getToken() != nil) == true)
-    }
-    
-    
     // MARK: - Dependencies -
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
     
+    // - MARK: - Properties -
+    var viewState: ((SplashViewState) -> Void)?
+    lazy var loginViewModel: LoginViewControllerDelegate = {
+        LoginViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
+    }()
+    lazy var heroesViewModel: HeroesViewControllerDelegate = { HeroesViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)}()
+    
+    private var isToken: Bool {
+        secureDataProvider.getToken()?.isEmpty == false
+    }
+    
+    // MARK: - Initializers - 
     init(apiProvider: ApiProviderProtocol,
          secureDataProvider: SecureDataProviderProtocol) {
         self.apiProvider = apiProvider
@@ -39,7 +37,8 @@ class SplashViewModel: SplashViewControllerDelegate {
 //            self.viewState?(.navigateToLogin)
 //        }
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-            self.isToken ? self.viewState?(.navigateToHeroes) : self.viewState?(.navigateToLogin)
+            self.viewState?(.navigateToLogin)
+//            self.isToken ? self.viewState?(.navigateToLogin) : self.viewState?(.navigateToHeroes)
         }
     }
 }

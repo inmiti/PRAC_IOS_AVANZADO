@@ -8,17 +8,17 @@
 import Foundation
 
 class LoginViewModel: LoginViewControllerDelegate {
-
-    // MARK: - Properties -
-    var viewState: ((LoginViewState) -> Void)?
-    var heroesViewModel: HeroesViewControllerDelegate {
-        HeroesViewModel()
-    }
-    
     // MARK: - Dependencies -
     let apiProvider: ApiProviderProtocol
     let secureDataProvider: SecureDataProviderProtocol
     
+    // MARK: - Properties -
+    var viewState: ((LoginViewState) -> Void)?
+    var heroesViewModel: HeroesViewControllerDelegate {
+        HeroesViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
+    }
+    
+    // MARK: - Initializers -
     init(apiProvider: ApiProviderProtocol,
          secureDataProvider: SecureDataProviderProtocol) {
         self.apiProvider = apiProvider
@@ -37,7 +37,7 @@ class LoginViewModel: LoginViewControllerDelegate {
                 return
             }
             
-            self.setLoggin(email: email, password: password)
+            self.doLoggin(email: email, password: password)
             
 //            self.apiProvider.login(email: email ?? "", password: password ?? "") { [weak self] result in
 //                switch result {
@@ -59,7 +59,7 @@ class LoginViewModel: LoginViewControllerDelegate {
         password?.isEmpty == false && (password?.count ?? 0 ) >= 4
     }
     
-    private func setLoggin(email: String?, password: String?) {
+    private func doLoggin(email: String?, password: String?) {
         apiProvider.login(email: email ?? "", password: password ?? "") { [weak self] result in
             switch result {
                 case .success(let token):

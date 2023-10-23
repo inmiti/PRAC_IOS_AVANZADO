@@ -13,6 +13,9 @@ class HeroeCell: UITableViewCell {
     @IBOutlet weak var heroNameLabel: UILabel!
     @IBOutlet weak var heroDescriptionLabel: UILabel!
     
+    static let identifier: String = "HeroeCell"
+    static let estimatedHeight: CGFloat = 160
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -21,14 +24,18 @@ class HeroeCell: UITableViewCell {
         heroDescriptionLabel.text = nil
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        // Initialization code
+//    }
     
-    func updateViewCell(name: String, description: String, photo: URL) {
+    func updateViewCell(name: String? = nil, description: String? = nil, photo: URL? = nil) {
         heroNameLabel.text = name
         heroDescriptionLabel.text = description
-        heroImage.setImage(url: photo)
+        if let fotoURL = photo {
+            heroImage.setImage(url: fotoURL)
+        } else {
+            print("Error: \(NetworkErrors.notImage)")
+            return }
     }
 }

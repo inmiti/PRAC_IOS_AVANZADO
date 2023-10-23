@@ -12,7 +12,7 @@ extension UIImageView {
     func setImage(url: URL) {
         var apiProviderImage = ApiProvider()
         
-        apiProviderImage.downloadImage(url: url) { [weak self] result in
+        apiProviderImage.downloadImage(for: url) { [weak self] result in
             switch result {
                 case .success(let image):
                     DispatchQueue.main.async {
