@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FCFEE822AE826F8004F38AB /* HeroDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFEE812AE826F8004F38AB /* HeroDAO.swift */; };
+		1FCFEE852AE828B9004F38AB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFEE842AE828B9004F38AB /* CoreDataStack.swift */; };
+		1FCFEE872AE85C12004F38AB /* CoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFEE862AE85C12004F38AB /* CoreDataProvider.swift */; };
 		1FE038402AE66C2400055DC1 /* HeroeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0383E2AE66C2400055DC1 /* HeroeCell.swift */; };
 		1FE038412AE66C2400055DC1 /* HeroeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE0383F2AE66C2400055DC1 /* HeroeCell.xib */; };
 		1FE038432AE6787F00055DC1 /* UImage+Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE038422AE6787F00055DC1 /* UImage+Remote.swift */; };
@@ -51,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FCFEE812AE826F8004F38AB /* HeroDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDAO.swift; sourceTree = "<group>"; };
+		1FCFEE842AE828B9004F38AB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		1FCFEE862AE85C12004F38AB /* CoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvider.swift; sourceTree = "<group>"; };
 		1FE0383E2AE66C2400055DC1 /* HeroeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroeCell.swift; sourceTree = "<group>"; };
 		1FE0383F2AE66C2400055DC1 /* HeroeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroeCell.xib; sourceTree = "<group>"; };
 		1FE038422AE6787F00055DC1 /* UImage+Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UImage+Remote.swift"; sourceTree = "<group>"; };
@@ -106,6 +112,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FCFEE802AE826DD004F38AB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1FCFEE812AE826F8004F38AB /* HeroDAO.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1FCFEE832AE82819004F38AB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1FE038422AE6787F00055DC1 /* UImage+Remote.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		1FE0383D2AE66C0500055DC1 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +166,7 @@
 				1FE276432AE2931500F35082 /* Data */,
 				1FE276462AE2933100F35082 /* Domain */,
 				1FE276422AE2930800F35082 /* Resources */,
+				1FCFEE832AE82819004F38AB /* Extension */,
 				1FE276482AE2934400F35082 /* Presentation */,
 			);
 			path = AppInmaBautista;
@@ -194,8 +217,11 @@
 		1FE276452AE2932900F35082 /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				1FCFEE802AE826DD004F38AB /* Models */,
 				1FE276182AE2922800F35082 /* AppInmaBautista.xcdatamodeld */,
 				1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */,
+				1FCFEE842AE828B9004F38AB /* CoreDataStack.swift */,
+				1FCFEE862AE85C12004F38AB /* CoreDataProvider.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -211,7 +237,6 @@
 		1FE276472AE2933C00F35082 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1FE038422AE6787F00055DC1 /* UImage+Remote.swift */,
 				1FE038442AE6E34D00055DC1 /* Hero.swift */,
 			);
 			path = Models;
@@ -400,14 +425,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FE276532AE2A3FF00F35082 /* HeroesViewController.swift in Sources */,
+				1FCFEE872AE85C12004F38AB /* CoreDataProvider.swift in Sources */,
 				1FE276142AE2922800F35082 /* SplashViewController.swift in Sources */,
 				1FE0A3772AE3E78F0024850D /* SecureDataProvider.swift in Sources */,
 				1FE276102AE2922800F35082 /* AppDelegate.swift in Sources */,
 				1FE276552AE2CDAF00F35082 /* SplashViewModel.swift in Sources */,
 				1FE038432AE6787F00055DC1 /* UImage+Remote.swift in Sources */,
 				1FE276592AE2F0A200F35082 /* HeroesViewModel.swift in Sources */,
+				1FCFEE852AE828B9004F38AB /* CoreDataStack.swift in Sources */,
 				1FE276572AE2F08800F35082 /* LoginViewModel.swift in Sources */,
 				1FE276122AE2922800F35082 /* SceneDelegate.swift in Sources */,
+				1FCFEE822AE826F8004F38AB /* HeroDAO.swift in Sources */,
 				1FE2765B2AE302B500F35082 /* ApiProvider.swift in Sources */,
 				1FE038402AE66C2400055DC1 /* HeroeCell.swift in Sources */,
 				1FE038452AE6E34D00055DC1 /* Hero.swift in Sources */,

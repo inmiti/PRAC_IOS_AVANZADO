@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class HeroesViewModel: HeroesViewControllerDelegate {
     var viewState: ((HeroesViewState) -> Void)?
@@ -27,12 +28,15 @@ class HeroesViewModel: HeroesViewControllerDelegate {
     }
     
     func loadData()  {
-        let token = secureDataProvider.getToken()
-        apiProvider.getHeroes(token: token) { [weak self] result in
-            DispatchQueue.global().async {
+        // TODO: Ver si hay datos en coredata, si no...
+        DispatchQueue.global().async {
+            guard let token = self.secureDataProvider.getToken() else {return}
+            self.apiProvider.getHeroes(token: token) { [weak self] result in
                 switch result {
                     case .success(let heroes):
                         self?.heroes = heroes
+                        //TODO: PRIMERO DELETE Y DESPUES: Guardar en CoreData
+                    
                         self?.viewState?(.updateData)
                     case .failure(let error):
                         print("Error: \(error)")
