@@ -13,6 +13,9 @@ class HeroesViewModel: HeroesViewControllerDelegate {
     var heroesCount: Int {
         heroes.count
     }
+    var loginViewModel: LoginViewControllerDelegate {
+        LoginViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
+    }
     
     private var apiProvider: ApiProviderProtocol
     private var secureDataProvider: SecureDataProviderProtocol
@@ -43,5 +46,13 @@ class HeroesViewModel: HeroesViewControllerDelegate {
             return nil
         }
         return heroes[index]
+    }
+    
+    func logOut() {
+        guard (secureDataProvider.getToken()) != nil else {
+            return
+        }
+        secureDataProvider.deleteToken()
+        viewState?(.navigateToLogin)
     }
 }

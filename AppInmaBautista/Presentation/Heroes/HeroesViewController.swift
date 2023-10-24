@@ -12,12 +12,16 @@ protocol HeroesViewControllerDelegate {
     func loadData()
     var heroesCount: Int { get }
     func heroBy(index: Int) -> Hero?
+    func logOut()
+    var loginViewModel: LoginViewControllerDelegate { get }
 }
 
 //var viewState
 
 enum HeroesViewState {
     case updateData
+    case navigateToLogin
+    case navigateToDetail
 }
 
 class HeroesViewController: UIViewController {
@@ -39,6 +43,11 @@ class HeroesViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "HEROES_TO_LOGIN",
+              let loginViewController = segue.destination as? LoginViewController else {return}
+        loginViewController.viewModel = viewModel?.loginViewModel
+    }
     func initViews() {
         tableView.register(UINib(nibName: HeroeCell.identifier, bundle: nil) ,
                            forCellReuseIdentifier: HeroeCell.identifier)
@@ -53,10 +62,19 @@ class HeroesViewController: UIViewController {
                 switch state {
                     case .updateData:
                     self?.tableView.reloadData()
+                case .navigateToLogin:
+                    self?.performSegue(withIdentifier: "HEROES_TO_LOGIN", sender: nil)
+                case .navigateToDetail:
+                    break
                 }
             }
         }
     }
+    
+    @IBAction func logoutButton(_ sender: Any) {
+        viewModel?.logOut()
+    }
+    
 }
 
 // MARK: Delegate and Data Source

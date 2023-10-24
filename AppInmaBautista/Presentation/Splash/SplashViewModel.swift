@@ -37,8 +37,8 @@ class SplashViewModel: SplashViewControllerDelegate {
 //            self.viewState?(.navigateToLogin)
 //        }
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-            self.viewState?(.navigateToLogin)
-//            self.isToken ? self.viewState?(.navigateToLogin) : self.viewState?(.navigateToHeroes)
+//            self.viewState?(.navigateToLogin)
+            self.isToken ? self.viewState?(.navigateToHeroes) : self.viewState?(.navigateToLogin)
         }
     }
 }
