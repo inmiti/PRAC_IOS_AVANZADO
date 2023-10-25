@@ -11,7 +11,7 @@ protocol HeroesViewControllerDelegate {
     var viewState: ((HeroesViewState) -> Void)? { get set }
     func loadData()
     var heroesCount: Int { get }
-    func heroBy(index: Int) -> Hero?
+    func heroBy(index: Int) -> HeroDAO?
     func logOut()
     var loginViewModel: LoginViewControllerDelegate { get }
 }
@@ -95,8 +95,9 @@ extension HeroesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let hero = viewModel?.heroBy(index: indexPath.row)
-        cell.updateViewCell(name: hero?.name ,
-                            description: hero?.description,
+        cell.updateViewCell(id: hero?.id,
+                            name: hero?.name,
+                            description: hero?.heroDescription,
                             photo: hero?.photo)
         return cell
     }

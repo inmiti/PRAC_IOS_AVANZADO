@@ -29,11 +29,15 @@ class HeroeCell: UITableViewCell {
 //        // Initialization code
 //    }
     
-    func updateViewCell(name: String? = nil, description: String? = nil, photo: URL? = nil) {
+    func updateViewCell(id: String? = nil,
+                        name: String? = nil,
+                        description: String? = nil,
+                        photo: String? = nil){
         heroNameLabel.text = name
         heroDescriptionLabel.text = description
-        if let fotoURL = photo {
-            heroImage.setImage(url: fotoURL)
+        if let photo = photo,
+           let id = id {
+            heroImage.setImage(id: id, photo: photo)
         } else {
             print("Error: \(NetworkErrors.notImage)")
             return }

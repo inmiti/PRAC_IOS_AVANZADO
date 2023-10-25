@@ -9,20 +9,21 @@ import Foundation
 import CoreData
 
 protocol CoreDataProviderProtocol {
+    var moc: NSManagedObjectContext? { get }
     func saveHeroDAO(hero: Hero)
     func loadHeroesDAO()
-    func loadHeroeById(id: String)
+    func loadHeroeById(id: String) -> [HeroDAO]
     func deleteAll()
 }
 
 class CoreDataProvider {
-    private var moc: NSManagedObjectContext? { CoreDataStack.shared.persistentContainer.viewContext
+    var moc: NSManagedObjectContext? { CoreDataStack.shared.persistentContainer.viewContext
     }
     
     func saveHeroDAO(hero: Hero) {
         guard let moc,
               let entityHero = NSEntityDescription.entity(forEntityName: HeroDAO.entityName, in: moc) else {return}
-        var heroDAO = HeroDAO(entity: entityHero, insertInto: moc)
+        let heroDAO = HeroDAO(entity: entityHero, insertInto: moc)
         heroDAO.id = hero.id
         heroDAO.name = hero.name
         heroDAO.heroDescription = hero.description
@@ -33,20 +34,26 @@ class CoreDataProvider {
         try? moc.save()
     }
     
-    func loadHeroesDAO()  {
+    func loadHeroesDAO() -> [HeroDAO] {
         let fetchHeroesDAO = NSFetchRequest<HeroDAO>(entityName: HeroDAO.entityName)
         guard let moc,
-              let heroes = try? moc.fetch(fetchHeroesDAO) else { return }
-        
-        print ("\(heroes)")
+              let heroes = try? moc.fetch(fetchHeroesDAO) else {
+            print("No hay datos de héroes almacenados")
+            return []
+        }
+        return heroes
     }
     
-    func loadHeroeById(id: String) {
+    func loadHeroeById(id: String) -> [HeroDAO] {
         let fetchHeroesDAO = NSFetchRequest<HeroDAO>(entityName: HeroDAO.entityName)
         fetchHeroesDAO.predicate = NSPredicate(format: "id = \(id)")
         guard let moc,
-              let heroe = try? moc.fetch(fetchHeroesDAO) else { return }
+              let heroe = try? moc.fetch(fetchHeroesDAO) else {
+            print("Noy hay ese héroes almacenado")
+            return []
+        }
         print("Heroe con id:\(heroe) ")
+        return heroe
     }
     
     func deleteAll(){
