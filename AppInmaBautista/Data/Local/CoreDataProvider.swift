@@ -13,7 +13,7 @@ protocol CoreDataProviderProtocol {
     func saveHeroDAO(hero: Hero)
     func loadHeroesDAO()
     func loadHeroeById(id: String) -> [HeroDAO]
-    func deleteAll()
+    func deleteAllHeroes()
 }
 
 class CoreDataProvider {
@@ -49,14 +49,14 @@ class CoreDataProvider {
         fetchHeroesDAO.predicate = NSPredicate(format: "id = \(id)")
         guard let moc,
               let heroe = try? moc.fetch(fetchHeroesDAO) else {
-            print("Noy hay ese héroes almacenado")
+            print("Noy hay ese héroe almacenado")
             return []
         }
         print("Heroe con id:\(heroe) ")
         return heroe
     }
     
-    func deleteAll(){
+    func deleteAllHeroes(){
         let fetchHeroesDAO = NSFetchRequest<HeroDAO>(entityName: HeroDAO.entityName)
         guard let moc,
               let heroes = try? moc.fetch(fetchHeroesDAO) else { return }

@@ -16,6 +16,9 @@ protocol ApiProviderProtocol {
                        completion: @escaping(Result< UIImage, NetworkErrors>) -> Void )
     func getHeroes(token: String?,
                    completion: @escaping(Result<Heroes, NetworkErrors>) -> Void)
+    func getLocations(token: String?,
+                      heroID: String?,
+                      completion: @escaping(Result<Locations, NetworkErrors>) -> Void)
 }
 
 // MARK: - NetoworkErrors -
@@ -51,6 +54,7 @@ class ApiProvider: ApiProviderProtocol {
     private enum PathAPI {
         static let login = "/api/auth/login"
         static let heroes = "/api/heros/all"
+        static let locations = "/api/heros/locations"
     }
     
     // MARK: - Public functions -
@@ -179,6 +183,61 @@ class ApiProvider: ApiProviderProtocol {
                 return
             }
             completion(.success(heroes))
+            
+        }
+        task.resume()
+    }
+    
+    func getLocations(token: String?,
+                      heroID: String?,
+                      completion: @escaping(Result<Locations, NetworkErrors>) -> Void) {
+        var components = baseComponents
+        components.path = PathAPI.locations
+        
+        guard let url = components.url else {
+            completion(.failure(.notFormedUrl))
+            return
+        }
+        
+        guard let token else {
+            completion(.failure(.notLogged))
+            return}
+        
+        let jsonData: [String:Any] = ["id": heroID ?? ""]
+        let jsonParameters = try? JSONSerialization.data(withJSONObject: jsonData)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.setValue("application/json; charset=utf-8",
+                         forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)",
+                         forHTTPHeaderField: "Authorization")
+        request.httpBody = jsonParameters
+        
+        let task = session.dataTask(with: request) {data, response, error in
+            guard error == nil else {
+                completion(.failure(.unknownError))
+                return
+            }
+            
+            guard let data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            let httpUrlResponse = response as? HTTPURLResponse
+            let statusCode = httpUrlResponse?.statusCode
+            guard statusCode == 200 else {
+                completion(.failure(.statusCode(code: statusCode)))
+                return
+            }
+            
+            guard let locations = try? JSONDecoder().decode(Locations.self, from: data) else {
+                completion(.failure(.decodingFailed))
+                return
+            }
+            completion(.success(locations))
             
         }
         task.resume()

@@ -9,11 +9,13 @@ import UIKit
 
 protocol HeroesViewControllerDelegate {
     var viewState: ((HeroesViewState) -> Void)? { get set }
-    func loadData()
     var heroesCount: Int { get }
+    var loginViewModel: LoginViewControllerDelegate { get }
+    var mapViewModel: MapViewControllerDelegate { get }
+    func onViewAppear()
     func heroBy(index: Int) -> HeroDAO?
     func logOut()
-    var loginViewModel: LoginViewControllerDelegate { get }
+    
 }
 
 //var viewState
@@ -22,6 +24,7 @@ enum HeroesViewState {
     case updateData
     case navigateToLogin
     case navigateToDetail
+    case navigateToMap
 }
 
 class HeroesViewController: UIViewController {
@@ -34,7 +37,7 @@ class HeroesViewController: UIViewController {
         super.viewDidLoad()
         initViews()
         setObserver()
-        viewModel?.loadData()
+        viewModel?.onViewAppear()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,9 +47,18 @@ class HeroesViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "HEROES_TO_LOGIN",
-              let loginViewController = segue.destination as? LoginViewController else {return}
-        loginViewController.viewModel = viewModel?.loginViewModel
+        switch segue.identifier {
+        case  "HEROES_TO_LOGIN":
+            guard let loginViewController = segue.destination as? LoginViewController else {return}
+            loginViewController.viewModel = viewModel?.loginViewModel
+        case "HEROES_TO_MAP":
+            guard let mapViewController = segue.destination as? MapViewController else {return}
+            mapViewController.viewModel = viewModel?.mapViewModel
+        case "HEROES_TO_DETAIL":
+            break
+        default:
+            break
+        }
     }
     func initViews() {
         tableView.register(UINib(nibName: HeroeCell.identifier, bundle: nil) ,
@@ -61,11 +73,13 @@ class HeroesViewController: UIViewController {
             DispatchQueue.main.async {
                 switch state {
                     case .updateData:
-                    self?.tableView.reloadData()
-                case .navigateToLogin:
-                    self?.performSegue(withIdentifier: "HEROES_TO_LOGIN", sender: nil)
-                case .navigateToDetail:
-                    break
+                        self?.tableView.reloadData()
+                    case .navigateToLogin:
+                        self?.performSegue(withIdentifier: "HEROES_TO_LOGIN", sender: nil)
+                    case .navigateToDetail:
+                        break
+                    case .navigateToMap:
+                        self?.performSegue(withIdentifier: "HEROES_TO_MAP", sender: nil)
                 }
             }
         }
@@ -73,6 +87,11 @@ class HeroesViewController: UIViewController {
     
     @IBAction func logoutButton(_ sender: Any) {
         viewModel?.logOut()
+    }
+    
+    
+    @IBAction func mapButton(_ sender: Any) {
+        viewModel?.viewState?(.navigateToMap)
     }
     
 }

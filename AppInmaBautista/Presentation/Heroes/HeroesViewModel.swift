@@ -23,6 +23,9 @@ class HeroesViewModel: HeroesViewControllerDelegate {
     var loginViewModel: LoginViewControllerDelegate {
         LoginViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
     }
+    var mapViewModel: MapViewControllerDelegate {
+        MapViewModel(heroes: heroes, apiprovider: apiProvider, secureDataProvider: secureDataProvider)
+    }
     
     private var apiProvider: ApiProviderProtocol
     private var secureDataProvider: SecureDataProviderProtocol
@@ -35,39 +38,38 @@ class HeroesViewModel: HeroesViewControllerDelegate {
         self.secureDataProvider = secureDataProvider
     }
     
-    func loadData()  {
+    func onViewAppear()  {
         // TODO: Ver si hay datos en coredata, si no...
         thereAreData == true ? heroesDAO = coreDataProvider.loadHeroesDAO() : saveDataFromApi()
         viewState?(.updateData)
         }
         
-        func heroBy(index: Int) -> HeroDAO? {
-            guard index >= 0 && index < heroesCount else {
-                return nil
-            }
-            return heroesDAO[index]
+    func heroBy(index: Int) -> HeroDAO? {
+        guard index >= 0 && index < heroesCount else {
+            return nil
         }
+        return heroesDAO[index]
+    }
         
-        func logOut() {
-            guard (secureDataProvider.getToken()) != nil else {
-                return
-            }
-            secureDataProvider.deleteToken()
-            guard thereAreData else {return}
-            coreDataProvider.deleteAll()
-            //TODO: añadir deleteAll(de coreData)
-            viewState?(.navigateToLogin)
+    func logOut() {
+        guard (secureDataProvider.getToken()) != nil else {
+            return
         }
+        secureDataProvider.deleteToken()
+        guard thereAreData else {return}
+        coreDataProvider.deleteAllHeroes()
+        viewState?(.navigateToLogin)
+    }
         
-        private func saveDataFromApi() {
-            guard let token = self.secureDataProvider.getToken() else {return}
+    private func saveDataFromApi() {
+        guard let token = self.secureDataProvider.getToken() else {return}
             DispatchQueue.global().async {
                 self.apiProvider.getHeroes(token: token) { [weak self] result in
                     switch result {
                     case .success(let heroes):
                         DispatchQueue.main.async {
                             self?.heroes = heroes
-                            self?.coreDataProvider.deleteAll()
+                            self?.coreDataProvider.deleteAllHeroes()
                             self?.heroes.forEach { self?.coreDataProvider.saveHeroDAO(hero: $0)}
                             self?.heroesDAO = self?.coreDataProvider.loadHeroesDAO() ?? []
                             self?.viewState?(.updateData)

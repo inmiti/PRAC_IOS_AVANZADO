@@ -43,6 +43,9 @@
                                             <imageReference key="image" image="map" catalog="system" symbolScale="large"/>
                                             <color key="baseBackgroundColor" systemColor="systemIndigoColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="mapButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="mCv-oE-R7j"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOt-hs-jop">
                                         <rect key="frame" x="279.33333333333331" y="0.0" width="49.666666666666686" height="44"/>
@@ -75,6 +78,8 @@
                     <connections>
                         <outlet property="tableView" destination="toH-Fm-qRT" id="pgm-FI-nR6"/>
                         <segue destination="rsL-gr-TIA" kind="show" identifier="HEROES_TO_LOGIN" id="bn8-50-5o1"/>
+                        <segue destination="eqz-4D-kOg" kind="show" identifier="HEROES_TO_DETAIL" id="Vuf-Qg-GpD"/>
+                        <segue destination="gkF-CF-1HR" kind="show" identifier="HEROES_TO_MAP" id="ebf-2D-vng"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -90,6 +95,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSd-g9-d8o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="883" y="-153"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="Udc-eO-WxU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Detail" id="eqz-4D-kOg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="sm9-EZ-xYB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HCe-8Y-jMe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="887" y="-37"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="KQm-VQ-Y30">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Map" id="gkF-CF-1HR" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="OaZ-TT-v7x"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eN5-YJ-BSa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="863" y="61"/>
         </scene>
     </scenes>
     <resources>
