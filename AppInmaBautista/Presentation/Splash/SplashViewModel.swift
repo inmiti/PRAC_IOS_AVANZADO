@@ -15,9 +15,14 @@ class SplashViewModel: SplashViewControllerDelegate {
     // - MARK: - Properties -
     var viewState: ((SplashViewState) -> Void)?
     lazy var loginViewModel: LoginViewControllerDelegate = {
-        LoginViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
+        LoginViewModel(apiProvider: apiProvider,
+                       secureDataProvider: secureDataProvider)
     }()
-    lazy var heroesViewModel: HeroesViewControllerDelegate = { HeroesViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)}()
+    lazy var heroesViewModel: HeroesViewControllerDelegate = {
+        HeroesViewModel(
+            apiProvider: apiProvider,
+            secureDataProvider: secureDataProvider)
+    }()
     
     private var isToken: Bool {
         secureDataProvider.getToken()?.isEmpty == false
@@ -25,7 +30,7 @@ class SplashViewModel: SplashViewControllerDelegate {
     
     // MARK: - Initializers - 
     init(apiProvider: ApiProviderProtocol,
-         secureDataProvider: SecureDataProviderProtocol) {
+        secureDataProvider: SecureDataProviderProtocol) {
         self.apiProvider = apiProvider
         self.secureDataProvider = secureDataProvider
     }

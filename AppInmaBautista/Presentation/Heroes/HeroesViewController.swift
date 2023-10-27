@@ -21,7 +21,7 @@ protocol HeroesViewControllerDelegate {
 //var viewState
 
 enum HeroesViewState {
-    case updateData
+    case updatedData
     case navigateToLogin
     case navigateToDetail
     case navigateToMap
@@ -48,18 +48,19 @@ class HeroesViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case  "HEROES_TO_LOGIN":
-            guard let loginViewController = segue.destination as? LoginViewController else {return}
-            loginViewController.viewModel = viewModel?.loginViewModel
-        case "HEROES_TO_MAP":
-            guard let mapViewController = segue.destination as? MapViewController else {return}
-            mapViewController.viewModel = viewModel?.mapViewModel
-        case "HEROES_TO_DETAIL":
-            break
-        default:
-            break
+            case  "HEROES_TO_LOGIN":
+                guard let loginViewController = segue.destination as? LoginViewController else {return}
+                loginViewController.viewModel = viewModel?.loginViewModel
+            case "HEROES_TO_MAP":
+                guard let mapViewController = segue.destination as? MapViewController else {return}
+                mapViewController.viewModel = viewModel?.mapViewModel
+            case "HEROES_TO_DETAIL":
+                break
+            default:
+                break
         }
     }
+    
     func initViews() {
         tableView.register(UINib(nibName: HeroeCell.identifier, bundle: nil) ,
                            forCellReuseIdentifier: HeroeCell.identifier)
@@ -72,7 +73,7 @@ class HeroesViewController: UIViewController {
         viewModel?.viewState = { [weak self] state in
             DispatchQueue.main.async {
                 switch state {
-                    case .updateData:
+                    case .updatedData:
                         self?.tableView.reloadData()
                     case .navigateToLogin:
                         self?.performSegue(withIdentifier: "HEROES_TO_LOGIN", sender: nil)
@@ -92,8 +93,7 @@ class HeroesViewController: UIViewController {
     
     @IBAction func mapButton(_ sender: Any) {
         viewModel?.viewState?(.navigateToMap)
-    }
-    
+    }    
 }
 
 // MARK: Delegate and Data Source
@@ -124,6 +124,4 @@ extension HeroesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-    
-    
 }

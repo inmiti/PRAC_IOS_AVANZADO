@@ -15,7 +15,7 @@ protocol MapViewControllerDelegate {
 }
 enum MapViewState {
     case loading
-    case update(locations: [String] )
+    case updatedData(locations: Locations )
     
 }
 class MapViewController: UIViewController {
@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
     }
     
     func initViews() {
-        
+        mapView.delegate = self
     }
     func setObserver() {
         viewModel?.viewState = { state in
@@ -39,11 +39,29 @@ class MapViewController: UIViewController {
                 switch state {
                 case .loading:
                     break
-                case .update:
-                    break
+                case .updatedData(locations: let locations):
+                    self.updateView(locations: locations)
                 }
             }
         }
-        
+    }
+    
+    private func updateView(locations: Locations) {
+        locations.forEach {
+            mapView.addAnnotation(
+                HeroLocationAnnotation(
+                    title: $0.id,
+                    coordinate: .init(latitude: Double($0.latitude ?? "") ?? 0,
+                                      longitude: Double($0.longitude ?? "") ?? 0)
+                )
+            )
+        }
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        return nil
     }
 }

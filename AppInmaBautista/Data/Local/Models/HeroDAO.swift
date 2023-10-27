@@ -7,7 +7,8 @@
 
 import Foundation
 import CoreData
-//typealias HeroesDAO = [HeroDAO]
+
+typealias HeroesDAO = [HeroDAO]
 
 @objc(HeroDAO)
 class HeroDAO: NSManagedObject {

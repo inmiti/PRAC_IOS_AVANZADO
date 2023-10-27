@@ -9,13 +9,14 @@ import Foundation
 
 class LoginViewModel: LoginViewControllerDelegate {
     // MARK: - Dependencies -
-    let apiProvider: ApiProviderProtocol
-    let secureDataProvider: SecureDataProviderProtocol
+    private let apiProvider: ApiProviderProtocol
+    private let secureDataProvider: SecureDataProviderProtocol
     
     // MARK: - Properties -
     var viewState: ((LoginViewState) -> Void)?
     var heroesViewModel: HeroesViewControllerDelegate {
-        HeroesViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
+        HeroesViewModel(apiProvider: apiProvider,
+                        secureDataProvider: secureDataProvider)
     }
     
     // MARK: - Initializers -
@@ -39,15 +40,6 @@ class LoginViewModel: LoginViewControllerDelegate {
             
             self.doLoggin(email: email, password: password)
             
-//            self.apiProvider.login(email: email ?? "", password: password ?? "") { [weak self] result in
-//                switch result {
-//                    case .success(let token):
-//                        self?.secureDataProvider.saveToken(token: token)
-//                        self?.viewState?(.navigateToHeroes)
-//                    case .failure(let error):
-//                        print("Error: \(error)")
-//                }
-//            }
         }
     }
     // MARK: - Private functions -
