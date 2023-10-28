@@ -50,7 +50,7 @@ class MapViewController: UIViewController {
         locations.forEach {
             mapView.addAnnotation(
                 HeroLocationAnnotation(
-                    title: $0.hero.id,
+                    title: $0.hero?.id,
                     coordinate: .init(latitude: Double($0.latitude ?? "") ?? 0,
                                       longitude: Double($0.longitude ?? "") ?? 0)
                 )

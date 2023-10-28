@@ -50,5 +50,25 @@ class DetailViewController: UIViewController {
         }
     }
     
+    private func updateViews(hero:Hero, locations: Locations) {
+        
+        nameHero.text = hero.name
+        descriptionHero.text = hero.description
+        let url = hero.photo
+        if let urlString = url?.absoluteString {
+            imageHero.setImage(photo: urlString)
+            makeRounded(image: imageHero)
+        }
+        else {
+            print("Error: \(NetworkErrors.notImage)")
+            return}
+    }
     
+    private func makeRounded(image: UIImageView) {
+        image.layer.borderWidth = 1
+        image.layer.borderColor = UIColor.white.cgColor.copy(alpha: 0.6)
+        image.layer.cornerRadius = image.frame.height / 2
+        image.layer.masksToBounds = false
+        image.clipsToBounds = true
+    }
 }

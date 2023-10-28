@@ -34,7 +34,7 @@ class DetailViewModel: DetailViewControllerDelegate {
                 switch result {
                 case .success(let locations):
                     self?.locations = locations
-                    self?.viewState?(.update(hero: self?.hero,
+                    self?.viewState?(.update(hero: self!.hero,
                                              locations: locations))
                 case .failure(let error):
                     print("Error en llamada a localizaciones: \(error)")

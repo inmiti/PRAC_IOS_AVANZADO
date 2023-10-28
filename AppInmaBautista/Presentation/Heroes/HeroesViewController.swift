@@ -114,7 +114,7 @@ extension HeroesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let hero = viewModel?.heroBy(index: indexPath.row)
-        cell.updateViewCell(id: hero?.id,
+        cell.updateViewCell(//id: hero?.id,
                             name: hero?.name,
                             description: hero?.heroDescription,
                             photo: hero?.photo)
