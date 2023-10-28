@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
     }
     
     func initViews() {
-        mapView.delegate = self
+//        mapView.delegate = self
     }
     
     func setObservers() {
@@ -67,6 +67,7 @@ class DetailViewController: UIViewController {
                 )
             )
         }
+        centerMapAroundLocations(locations: locations)
     }
     
     private func makeRounded(image: UIImageView) {
@@ -76,8 +77,36 @@ class DetailViewController: UIViewController {
         image.layer.masksToBounds = false
         image.clipsToBounds = true
     }
+    
+    private func centerMapAroundLocations(locations: [Location]) {
+        if locations.isEmpty {
+            return
+        }
+       
+        var minLatitude = Double(locations.first?.latitude ?? "") ?? 0.0
+        var maxLatitude = minLatitude
+        var minLongitude = Double(locations.first?.longitude ?? "") ?? 0.0
+        var maxLongitude = minLongitude
+
+        for location in locations {
+            if let latitude = Double(location.latitude ?? ""), let longitude = Double(location.longitude ?? "") {
+                minLatitude = min(minLatitude, latitude)
+                maxLatitude = max(maxLatitude, latitude)
+                minLongitude = min(minLongitude, longitude)
+                maxLongitude = max(maxLongitude, longitude)
+            }
+        }
+        
+        let center = CLLocationCoordinate2D(latitude: (minLatitude + maxLatitude) / 2,
+                                            longitude: (minLongitude + maxLongitude) / 2)
+        let latitudeDelta = (maxLatitude - minLatitude) * 1.3
+        let longitudeDelta = (maxLongitude - minLongitude) * 1.3
+        
+        let span = MKCoordinateSpan(latitudeDelta: latitudeDelta,
+                                    longitudeDelta: longitudeDelta)
+        let region = MKCoordinateRegion(center: center, span: span)
+        
+        mapView.setRegion(region, animated: true)
+    }
 }
 
-extension DetailViewController: MKMapViewDelegate {
-    
-}

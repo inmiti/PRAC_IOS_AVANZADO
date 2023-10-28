@@ -9,8 +9,7 @@ import UIKit
 
 extension UIImageView {
     
-    func setImage(//id: String,
-                  photo: String) {
+    func setImage(photo: String) {
         let apiProviderImage = ApiProvider()
 //        let coreDataProvider = CoreDataProvider()
 //        let heroDAO = coreDataProvider.loadHeroeById(id: id)
