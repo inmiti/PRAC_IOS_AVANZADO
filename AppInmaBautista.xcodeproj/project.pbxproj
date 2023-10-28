@@ -24,6 +24,8 @@
 		1FE038432AE6787F00055DC1 /* UImage+Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE038422AE6787F00055DC1 /* UImage+Remote.swift */; };
 		1FE038452AE6E34D00055DC1 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE038442AE6E34D00055DC1 /* Hero.swift */; };
 		1FE071C82AED30750018A212 /* HeroAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE071C72AED30750018A212 /* HeroAnnotation.swift */; };
+		1FE071CB2AED682C0018A212 /* ApiProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE071CA2AED682C0018A212 /* ApiProviderTest.swift */; };
+		1FE071CD2AED6D820018A212 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE071CC2AED6D820018A212 /* MockApiService.swift */; };
 		1FE0A3752AE3E76A0024850D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE0A3742AE3E76A0024850D /* KeychainSwift */; };
 		1FE0A3772AE3E78F0024850D /* SecureDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */; };
 		1FE276102AE2922800F35082 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2760F2AE2922800F35082 /* AppDelegate.swift */; };
@@ -33,7 +35,7 @@
 		1FE2761A2AE2922800F35082 /* AppInmaBautista.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276182AE2922800F35082 /* AppInmaBautista.xcdatamodeld */; };
 		1FE2761C2AE2922B00F35082 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FE2761B2AE2922B00F35082 /* Assets.xcassets */; };
 		1FE2761F2AE2922B00F35082 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FE2761D2AE2922B00F35082 /* LaunchScreen.storyboard */; };
-		1FE2762A2AE2922B00F35082 /* AppInmaBautistaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276292AE2922B00F35082 /* AppInmaBautistaTests.swift */; };
+		1FE2762A2AE2922B00F35082 /* SecureDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276292AE2922B00F35082 /* SecureDataProviderTests.swift */; };
 		1FE276342AE2922B00F35082 /* AppInmaBautistaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276332AE2922B00F35082 /* AppInmaBautistaUITests.swift */; };
 		1FE276362AE2922B00F35082 /* AppInmaBautistaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE276352AE2922B00F35082 /* AppInmaBautistaUITestsLaunchTests.swift */; };
 		1FE2764D2AE2A3A800F35082 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FE2764C2AE2A3A800F35082 /* Login.storyboard */; };
@@ -82,6 +84,8 @@
 		1FE038422AE6787F00055DC1 /* UImage+Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UImage+Remote.swift"; sourceTree = "<group>"; };
 		1FE038442AE6E34D00055DC1 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		1FE071C72AED30750018A212 /* HeroAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroAnnotation.swift; sourceTree = "<group>"; };
+		1FE071CA2AED682C0018A212 /* ApiProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProviderTest.swift; sourceTree = "<group>"; };
+		1FE071CC2AED6D820018A212 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDataProvider.swift; sourceTree = "<group>"; };
 		1FE2760C2AE2922800F35082 /* AppInmaBautista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppInmaBautista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE2760F2AE2922800F35082 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,7 +97,7 @@
 		1FE2761E2AE2922B00F35082 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FE276202AE2922B00F35082 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FE276252AE2922B00F35082 /* AppInmaBautistaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppInmaBautistaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FE276292AE2922B00F35082 /* AppInmaBautistaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInmaBautistaTests.swift; sourceTree = "<group>"; };
+		1FE276292AE2922B00F35082 /* SecureDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDataProviderTests.swift; sourceTree = "<group>"; };
 		1FE2762F2AE2922B00F35082 /* AppInmaBautistaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppInmaBautistaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE276332AE2922B00F35082 /* AppInmaBautistaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInmaBautistaUITests.swift; sourceTree = "<group>"; };
 		1FE276352AE2922B00F35082 /* AppInmaBautistaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInmaBautistaUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -198,6 +202,14 @@
 			path = DetailMapAnnotations;
 			sourceTree = "<group>";
 		};
+		1FE071C92AED67F90018A212 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				1FE071CC2AED6D820018A212 /* MockApiService.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		1FE276032AE2922800F35082 = {
 			isa = PBXGroup;
 			children = (
@@ -235,7 +247,9 @@
 		1FE276282AE2922B00F35082 /* AppInmaBautistaTests */ = {
 			isa = PBXGroup;
 			children = (
-				1FE276292AE2922B00F35082 /* AppInmaBautistaTests.swift */,
+				1FE071C92AED67F90018A212 /* Mocks */,
+				1FE276292AE2922B00F35082 /* SecureDataProviderTests.swift */,
+				1FE071CA2AED682C0018A212 /* ApiProviderTest.swift */,
 			);
 			path = AppInmaBautistaTests;
 			sourceTree = "<group>";
@@ -548,7 +562,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FE2762A2AE2922B00F35082 /* AppInmaBautistaTests.swift in Sources */,
+				1FE071CD2AED6D820018A212 /* MockApiService.swift in Sources */,
+				1FE2762A2AE2922B00F35082 /* SecureDataProviderTests.swift in Sources */,
+				1FE071CB2AED682C0018A212 /* ApiProviderTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
