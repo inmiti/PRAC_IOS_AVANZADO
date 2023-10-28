@@ -14,19 +14,20 @@ class SplashViewModel: SplashViewControllerDelegate {
     
     // - MARK: - Properties -
     var viewState: ((SplashViewState) -> Void)?
+    private var isToken: Bool {
+        secureDataProvider.getToken()?.isEmpty == false
+    }
+    
     lazy var loginViewModel: LoginViewControllerDelegate = {
         LoginViewModel(apiProvider: apiProvider,
                        secureDataProvider: secureDataProvider)
     }()
+    
     lazy var heroesViewModel: HeroesViewControllerDelegate = {
         HeroesViewModel(
             apiProvider: apiProvider,
             secureDataProvider: secureDataProvider)
     }()
-    
-    private var isToken: Bool {
-        secureDataProvider.getToken()?.isEmpty == false
-    }
     
     // MARK: - Initializers - 
     init(apiProvider: ApiProviderProtocol,
@@ -35,14 +36,10 @@ class SplashViewModel: SplashViewControllerDelegate {
         self.secureDataProvider = secureDataProvider
     }
     
+    // MARK: - Functions -
     func onViewAppear() {
         viewState?(.loading(true))
-        
-//        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(2)) {
-//            self.viewState?(.navigateToLogin)
-//        }
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-//            self.viewState?(.navigateToLogin)
             self.isToken ? self.viewState?(.navigateToHeroes) : self.viewState?(.navigateToLogin)
         }
     }

@@ -20,13 +20,13 @@ class MapViewModel: MapViewControllerDelegate {
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
     private let coreDataProvider: CoreDataProviderProtocol
-    private let saveDataFromApi: SaveDataFromApiDelegate
+    private let saveDataFromApi: SaveDataFromApiProtocol
     
     init(heroes: HeroesDAO,
          apiProvider: ApiProviderProtocol,
          secureDataProvider: SecureDataProviderProtocol,
          coreDataProvider: CoreDataProviderProtocol,
-         saveDataFromApi: SaveDataFromApiDelegate = SaveDataFromApi()
+         saveDataFromApi: SaveDataFromApiProtocol = SaveDataFromApi()
     ) {
         self.apiProvider = apiProvider
         self.secureDataProvider = secureDataProvider

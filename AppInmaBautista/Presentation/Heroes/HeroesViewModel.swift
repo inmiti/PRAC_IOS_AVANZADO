@@ -9,7 +9,13 @@ import UIKit
 import CoreData
 
 class HeroesViewModel: HeroesViewControllerDelegate {
+    // MARK: - Dependencies -
+    private var apiProvider: ApiProviderProtocol
+    private var secureDataProvider: SecureDataProviderProtocol
+    private var coreDataProvider: CoreDataProviderProtocol
+    private var saveDataFromApi: SaveDataFromApiProtocol
     
+    // MARK: - Properties -
     var viewState: ((HeroesViewState) -> Void)?
     var heroes: Heroes = []
     var heroesDAO: [HeroDAO] = []
@@ -33,16 +39,10 @@ class HeroesViewModel: HeroesViewControllerDelegate {
         )
     }
     
-    private var apiProvider: ApiProviderProtocol
-    private var secureDataProvider: SecureDataProviderProtocol
-    private var coreDataProvider: CoreDataProviderProtocol
-    private var saveDataFromApi: SaveDataFromApiDelegate
-    
-    
     init(apiProvider: ApiProviderProtocol,
          secureDataProvider: SecureDataProviderProtocol,
          coreDataProvider: CoreDataProviderProtocol = CoreDataProvider(),
-         saveDataFromApi: SaveDataFromApiDelegate = SaveDataFromApi()) {
+         saveDataFromApi: SaveDataFromApiProtocol = SaveDataFromApi()) {
         self.apiProvider = apiProvider
         self.secureDataProvider = secureDataProvider
         self.coreDataProvider = coreDataProvider
@@ -50,10 +50,8 @@ class HeroesViewModel: HeroesViewControllerDelegate {
         
     }
     
+    // MARK: - Functions -
     func onViewAppear()  {
-        // TODO: Ver si hay datos en coredata, si no...
-//        thereAreData == true ? heroesDAO = coreDataProvider.loadHeroesDAO() : saveDataFromApi.saveHeroes()
-//        viewState?(.updatedData)
         if thereAreData {
                 heroesDAO = coreDataProvider.loadHeroesDAO()
                 viewState?(.updatedData)
@@ -65,9 +63,8 @@ class HeroesViewModel: HeroesViewControllerDelegate {
                         self?.viewState?(.updatedData)
                     }
                 }
-            }
+        }
     }
-    
     
     func heroBy(index: Int) -> HeroDAO? {
         guard index >= 0 && index < heroesCount else {

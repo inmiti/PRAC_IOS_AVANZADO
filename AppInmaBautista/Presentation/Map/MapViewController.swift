@@ -63,5 +63,10 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         return nil
+        //TODO: poner en chinchetas imagen del personaje
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+        // TODO: Para navegar a detalle cuando pincha 
     }
 }

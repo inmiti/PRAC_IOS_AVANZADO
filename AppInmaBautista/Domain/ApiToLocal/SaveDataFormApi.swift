@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol SaveDataFromApiDelegate {
+protocol SaveDataFromApiProtocol {
     func saveHeroes(completion: @escaping () -> Void)
     func saveLocations(heros: HeroesDAO, completion: @escaping () -> Void)
 }
 
-class SaveDataFromApi: SaveDataFromApiDelegate {
+class SaveDataFromApi: SaveDataFromApiProtocol {
     
     private var apiProvider: ApiProviderProtocol
     private var secureDataProvider: SecureDataProviderProtocol

@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
     }
     
     func initViews() {
-        
+        mapView.delegate = self
     }
     
     func setObservers() {
@@ -52,12 +52,21 @@ class DetailViewController: UIViewController {
     }
     
     private func updateViews(hero:HeroDAO, locations: Locations) {
-        
         nameHero.text = hero.name
         descriptionHero.text = hero.heroDescription
 
         imageHero.setImage(photo: hero.photo ?? "")
         makeRounded(image: imageHero)
+        
+        locations.forEach {
+            mapView.addAnnotation(
+                HeroAnnotation(
+                    title: hero.name,
+                    coordinate: .init(latitude: Double($0.latitude ?? "") ?? 0.0,
+                                      longitude: Double($0.longitude ?? "") ?? 0.0)
+                )
+            )
+        }
     }
     
     private func makeRounded(image: UIImageView) {
@@ -67,4 +76,8 @@ class DetailViewController: UIViewController {
         image.layer.masksToBounds = false
         image.clipsToBounds = true
     }
+}
+
+extension DetailViewController: MKMapViewDelegate {
+    
 }

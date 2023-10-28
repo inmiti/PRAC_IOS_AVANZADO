@@ -23,6 +23,7 @@
 		1FE038412AE66C2400055DC1 /* HeroeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FE0383F2AE66C2400055DC1 /* HeroeCell.xib */; };
 		1FE038432AE6787F00055DC1 /* UImage+Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE038422AE6787F00055DC1 /* UImage+Remote.swift */; };
 		1FE038452AE6E34D00055DC1 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE038442AE6E34D00055DC1 /* Hero.swift */; };
+		1FE071C82AED30750018A212 /* HeroAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE071C72AED30750018A212 /* HeroAnnotation.swift */; };
 		1FE0A3752AE3E76A0024850D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE0A3742AE3E76A0024850D /* KeychainSwift */; };
 		1FE0A3772AE3E78F0024850D /* SecureDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */; };
 		1FE276102AE2922800F35082 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE2760F2AE2922800F35082 /* AppDelegate.swift */; };
@@ -80,6 +81,7 @@
 		1FE0383F2AE66C2400055DC1 /* HeroeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroeCell.xib; sourceTree = "<group>"; };
 		1FE038422AE6787F00055DC1 /* UImage+Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UImage+Remote.swift"; sourceTree = "<group>"; };
 		1FE038442AE6E34D00055DC1 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		1FE071C72AED30750018A212 /* HeroAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroAnnotation.swift; sourceTree = "<group>"; };
 		1FE0A3762AE3E78F0024850D /* SecureDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDataProvider.swift; sourceTree = "<group>"; };
 		1FE2760C2AE2922800F35082 /* AppInmaBautista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppInmaBautista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE2760F2AE2922800F35082 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,12 +134,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F9CAB422AEA925600A0CA15 /* MapAnnotations */ = {
+		1F9CAB422AEA925600A0CA15 /* AllMapAnnotations */ = {
 			isa = PBXGroup;
 			children = (
 				1F9CAB432AEAAF2500A0CA15 /* HeroLocationAnnotation.swift */,
 			);
-			path = MapAnnotations;
+			path = AllMapAnnotations;
 			sourceTree = "<group>";
 		};
 		1FCFEE802AE826DD004F38AB /* Models */ = {
@@ -160,6 +162,7 @@
 		1FDEFBD92AE98DB6003C0D64 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				1FE071C62AED2FFF0018A212 /* DetailMapAnnotations */,
 				1FDEFBDA2AE98DF6003C0D64 /* Detail.storyboard */,
 				1FDEFBDC2AE98E0D003C0D64 /* DetailViewController.swift */,
 				1FDEFBDE2AE98E1D003C0D64 /* DetailViewModel.swift */,
@@ -170,7 +173,7 @@
 		1FDEFBE02AE98E2A003C0D64 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				1F9CAB422AEA925600A0CA15 /* MapAnnotations */,
+				1F9CAB422AEA925600A0CA15 /* AllMapAnnotations */,
 				1FDEFBE12AE98E6F003C0D64 /* Map.storyboard */,
 				1FDEFBE32AE98E82003C0D64 /* MapViewController.swift */,
 				1FDEFBE52AE98E95003C0D64 /* MapViewModel.swift */,
@@ -185,6 +188,14 @@
 				1FE0383E2AE66C2400055DC1 /* HeroeCell.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		1FE071C62AED2FFF0018A212 /* DetailMapAnnotations */ = {
+			isa = PBXGroup;
+			children = (
+				1FE071C72AED30750018A212 /* HeroAnnotation.swift */,
+			);
+			path = DetailMapAnnotations;
 			sourceTree = "<group>";
 		};
 		1FE276032AE2922800F35082 = {
@@ -528,6 +539,7 @@
 				1FE038452AE6E34D00055DC1 /* Hero.swift in Sources */,
 				1FE2764F2AE2A3BE00F35082 /* LoginViewController.swift in Sources */,
 				1F9CAB3F2AEA5CE000A0CA15 /* Locations.swift in Sources */,
+				1FE071C82AED30750018A212 /* HeroAnnotation.swift in Sources */,
 				1FE2761A2AE2922800F35082 /* AppInmaBautista.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
