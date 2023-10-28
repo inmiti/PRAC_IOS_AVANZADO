@@ -38,7 +38,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xsd-hE-PTC">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xsd-hE-PTC">
                                 <rect key="frame" x="265" y="324" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Xsd-hE-PTC" secondAttribute="height" multiplier="1:1" id="iKl-vT-LDY"/>

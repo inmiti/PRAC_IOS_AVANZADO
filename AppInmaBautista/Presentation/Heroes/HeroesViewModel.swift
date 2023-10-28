@@ -23,6 +23,8 @@ class HeroesViewModel: HeroesViewControllerDelegate {
     var loginViewModel: LoginViewControllerDelegate {
         LoginViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
     }
+    
+    
     var mapViewModel: MapViewControllerDelegate {
         MapViewModel(heroes: heroesDAO,
                      apiProvider: apiProvider,
@@ -83,5 +85,13 @@ class HeroesViewModel: HeroesViewControllerDelegate {
         coreDataProvider.deleteAllHeroes()
         coreDataProvider.deleteAllLocations()
         viewState?(.navigateToLogin)
+    }
+    
+    func detailViewModel(index: Int ) -> DetailViewControllerDelegate? {
+        guard let selectedHero = heroBy(index: index) else { return nil }
+        return DetailViewModel(
+                hero: selectedHero,
+                apiProvider: apiProvider,
+                secureDataProvider: secureDataProvider)
     }
 }

@@ -15,7 +15,7 @@ protocol DetailViewControllerDelegate {
 
 enum DetailViewState {
     case loading(_ isLoading: Bool)
-    case update(hero: Hero, locations: Locations)
+    case update(hero: HeroDAO, locations: Locations)
 }
 
 class DetailViewController: UIViewController {
@@ -31,6 +31,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         initViews()
         setObservers()
+        viewModel?.onViewAppear()
     }
     
     func initViews() {
@@ -44,24 +45,19 @@ class DetailViewController: UIViewController {
                 case .loading(let isLoading):
                     break
                 case .update(let hero, let locations):
-                    break
+                    self.updateViews(hero: hero, locations: locations)
                 }
             }
         }
     }
     
-    private func updateViews(hero:Hero, locations: Locations) {
+    private func updateViews(hero:HeroDAO, locations: Locations) {
         
         nameHero.text = hero.name
-        descriptionHero.text = hero.description
-        let url = hero.photo
-        if let urlString = url?.absoluteString {
-            imageHero.setImage(photo: urlString)
-            makeRounded(image: imageHero)
-        }
-        else {
-            print("Error: \(NetworkErrors.notImage)")
-            return}
+        descriptionHero.text = hero.heroDescription
+
+        imageHero.setImage(photo: hero.photo ?? "")
+        makeRounded(image: imageHero)
     }
     
     private func makeRounded(image: UIImageView) {

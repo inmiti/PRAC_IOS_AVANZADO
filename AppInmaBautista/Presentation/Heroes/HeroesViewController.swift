@@ -15,7 +15,7 @@ protocol HeroesViewControllerDelegate {
     func onViewAppear()
     func heroBy(index: Int) -> HeroDAO?
     func logOut()
-    
+    func detailViewModel(index: Int ) -> DetailViewControllerDelegate?
 }
 
 //var viewState
@@ -48,14 +48,19 @@ class HeroesViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-            case  "HEROES_TO_LOGIN":
+            case "HEROES_TO_LOGIN":
                 guard let loginViewController = segue.destination as? LoginViewController else {return}
                 loginViewController.viewModel = viewModel?.loginViewModel
             case "HEROES_TO_MAP":
                 guard let mapViewController = segue.destination as? MapViewController else {return}
                 mapViewController.viewModel = viewModel?.mapViewModel
             case "HEROES_TO_DETAIL":
-                break
+                guard let index = sender as? Int,
+                      let detailViewController = segue.destination as? DetailViewController,
+                      let detailViewModel = viewModel?.detailViewModel(index: index) else {
+                    return
+                }
+                detailViewController.viewModel = detailViewModel
             default:
                 break
         }
@@ -122,6 +127,8 @@ extension HeroesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        performSegue(withIdentifier: "HEROES_TO_DETAIL",
+                     sender: indexPath.row)
     }
+    
 }

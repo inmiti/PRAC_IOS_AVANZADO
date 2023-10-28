@@ -10,12 +10,12 @@ import Foundation
 class DetailViewModel: DetailViewControllerDelegate {
     
     private var locations: Locations = []
-    private let hero: Hero
+    private let hero: HeroDAO
     private let apiProvider: ApiProviderProtocol
     private let secureDataProvider: SecureDataProviderProtocol
     
     var viewState: ((DetailViewState) -> Void)?
-    init(hero: Hero,
+    init(hero: HeroDAO,
          apiProvider: ApiProviderProtocol,
          secureDataProvider: SecureDataProviderProtocol) {
         self.hero = hero
@@ -43,11 +43,4 @@ class DetailViewModel: DetailViewControllerDelegate {
             
         }
     }
-    
-    private func updateViews(hero: Hero?, locations: Locations){
-        
-    }
-    
-    
-    
 }
