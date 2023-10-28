@@ -218,7 +218,7 @@ class ApiProvider: ApiProviderProtocol {
         let task = session.dataTask(with: request) {data, response, error in
             guard error == nil else {
                 completion(.failure(.unknownError))
-                print("Error unknown: \(heroID)")
+                print("Error unknownError: \(heroID)")
                 return
             }
             

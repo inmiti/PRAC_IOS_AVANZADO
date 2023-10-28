@@ -37,43 +37,44 @@ class MapViewModel: MapViewControllerDelegate {
     
     func onViewAppear() {
         viewState?(.loading)
-        
-        // Observador de notification center que avisa de que están los datos en coredata: entonces ejecuto self?.viewState?(.updatedData(locations: self?.locations ?? [] ))
-//        if thereAreData {
-//                locationsDAO = coreDataProvider.loadLocationsDAO()
-//                viewState?(.updatedData(locations: locationsDAO))
-//            } else {
-        
-//        saveDataFromApi.saveLocations(heros: heroes, completion: { [weak self] in
-//                    // La clausura se ejecuta cuando se ha completado saveHeroes
-//                    self?.locationsDAO = self?.coreDataProvider.loadLocationsDAO() ?? []
-//                    DispatchQueue.main.async {
-//                        self?.viewState?(.updatedData(locations: self?.locationsDAO ?? []))
-//                    }
-//                })
+//        for hero in heroes{
+//            apiRequest(hero: hero) {[weak self] in
+//                self?.locations.append(contentsOf: locations)
 //            }
+//        }
+//            self.viewState?(.updatedData(locations: self.locations ?? []) )
+        }
+       
+        
+//        for hero in heroes {
+//            apiRequest(hero: hero) {[weak self] in
+//                self?.locations.append(contentsOf: self?.locations ?? [])
+//            }
+//        }
+//        DispatchQueue.main.async {
+//            self.viewState?(.updatedData(locations: self.locations) )
+//        }
     }
     
-    private func apiRequest() {
-        coreDataProvider.deleteAllLocations()
-        guard let token = self.secureDataProvider.getToken() else {return}
-        for h in heroes {
-            DispatchQueue.global().async {
-                self.apiProvider.getLocations(token: token, heroID: h.id) { [weak self] result in
-                    switch result {
-                        case .success(let locations):
-                            DispatchQueue.main.async {
-                                self?.locations.append(contentsOf: locations)
-                                self?.viewState?(.updatedData(locations: self?.locationsDAO ?? []))
-
-//                                          self?.locations.forEach{self?.coreDataProvider.saveLocationDAO(location: $0)}
-//                                self?.locationsDAO = self?.coreDataProvider.loadLocationsDAO() ?? []
-                            }
-                        case .failure(let error):
-                            print("Error: \(error)")
-                    }
-                }
-            }
-        }
-    }
-}
+//    private func apiRequest(hero: HeroDAO, completion: @escaping () -> Void) {
+////        coreDataProvider.deleteAllLocations()
+//        guard let token = secureDataProvider.getToken() else {return}
+////        for hero in heroes {
+//            DispatchQueue.global().async {
+//
+//                self.apiProvider.getLocations(token: token, heroID: hero.id) { [weak self] result in
+//                    switch result {
+//                        case .success(let locations):
+//                            DispatchQueue.main.async {
+//                                self?.locations.append(contentsOf: locations)
+//                                completion()
+//
+//                            }
+//                        case .failure(let error):
+//                            print("Error: \(error)")
+//                    }
+//                }
+//            }
+////        }
+//    }
+//}

@@ -23,6 +23,6 @@ struct Location: Codable {
     let date: String?
     let longitude: String?
     let latitude: String?
-    let hero: Hero
+    let hero: Hero?
 }
 
