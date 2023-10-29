@@ -42,25 +42,30 @@ class MapViewModel: MapViewControllerDelegate {
     func onViewAppear() {
         viewState?(.loading(true))
         
-        let dispatchGroup = DispatchGroup()
-        coreDataProvider.deleteAllLocations()
-
-        for hero in heroesDAO {
-            dispatchGroup.enter()
-            saveDataFromApi.saveLocations(hero: hero) { [weak self] in
-                DispatchQueue.main.async {
-                    self?.locations.forEach { location in
-                        self?.coreDataProvider.saveLocationDAO(location: location)
+        if thereAreData {
+            locationsDAO = coreDataProvider.loadLocationsDAO()
+            viewState?(.updatedData(heroes:heroesDAO, locations: locationsDAO))
+            viewState?(.loading(false))
+        } else {
+            let dispatchGroup = DispatchGroup()
+            coreDataProvider.deleteAllLocations()
+            
+            for hero in heroesDAO {
+                dispatchGroup.enter()
+                saveDataFromApi.saveLocations(hero: hero) { [weak self] in
+                    DispatchQueue.main.async {
+                        self?.locations.forEach { location in
+                            self?.coreDataProvider.saveLocationDAO(location: location)
+                        }
+                        dispatchGroup.leave()
                     }
-                    dispatchGroup.leave()
                 }
             }
-        }
-
-        dispatchGroup.notify(queue: .main) {
-            self.locationsDAO = self.coreDataProvider.loadLocationsDAO()
-            self.viewState?(.updatedData(heroes:self.heroesDAO, locations: self.locationsDAO))
-            self.viewState?(.loading(false))
+            dispatchGroup.notify(queue: .main) {
+                self.locationsDAO = self.coreDataProvider.loadLocationsDAO()
+                self.viewState?(.updatedData(heroes:self.heroesDAO, locations: self.locationsDAO))
+                self.viewState?(.loading(false))
+            }
         }
     }
 }
