@@ -22,6 +22,7 @@ class HeroesViewModel: HeroesViewControllerDelegate {
     var heroesCount: Int {
         heroesDAO.count
     }
+    
     private var thereAreData: Bool {
         coreDataProvider.loadHeroesDAO().isEmpty == false
     }
@@ -29,7 +30,6 @@ class HeroesViewModel: HeroesViewControllerDelegate {
     var loginViewModel: LoginViewControllerDelegate {
         LoginViewModel(apiProvider: apiProvider, secureDataProvider: secureDataProvider)
     }
-    
     
     var mapViewModel: MapViewControllerDelegate {
         MapViewModel(heroesDAO: heroesDAO,
@@ -39,6 +39,7 @@ class HeroesViewModel: HeroesViewControllerDelegate {
         )
     }
     
+    // MARK: - Initializers -
     init(apiProvider: ApiProviderProtocol,
          secureDataProvider: SecureDataProviderProtocol,
          coreDataProvider: CoreDataProviderProtocol = CoreDataProvider(),
@@ -47,22 +48,26 @@ class HeroesViewModel: HeroesViewControllerDelegate {
         self.secureDataProvider = secureDataProvider
         self.coreDataProvider = coreDataProvider
         self.saveDataFromApi = saveDataFromApi
-        
     }
     
     // MARK: - Functions -
     func onViewAppear()  {
+        viewState?(.uploading(true))
+        
+        defer {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
+                self?.viewState?(.updatedData)
+                self?.viewState?(.uploading(false))
+            }
+        }
+        
         if thereAreData {
                 heroesDAO = coreDataProvider.loadHeroesDAO()
-                viewState?(.updatedData)
             } else {
                 saveDataFromApi.saveHeroes { [weak self] in
-                    // La clausura se ejecuta cuando se ha completado saveHeroes
                     self?.heroesDAO = self?.coreDataProvider.loadHeroesDAO() ?? []
-                    DispatchQueue.main.async {
-                        self?.viewState?(.updatedData)
-                    }
-                }
+            }
         }
     }
     
@@ -78,7 +83,6 @@ class HeroesViewModel: HeroesViewControllerDelegate {
             return
         }
         secureDataProvider.deleteToken()
-        guard thereAreData else {return}
         coreDataProvider.deleteAllHeroes()
         coreDataProvider.deleteAllLocations()
         viewState?(.navigateToLogin)

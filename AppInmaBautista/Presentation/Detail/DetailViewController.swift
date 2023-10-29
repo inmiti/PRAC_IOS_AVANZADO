@@ -8,44 +8,45 @@
 import UIKit
 import MapKit
 
+// MARK: - Protocols -
 protocol DetailViewControllerDelegate {
     var viewState: ((DetailViewState) -> Void)? { get set }
     func onViewAppear()
 }
 
+// MARK: - State View -
 enum DetailViewState {
     case loading(_ isLoading: Bool)
     case update(hero: HeroDAO, locations: Locations)
 }
 
 class DetailViewController: UIViewController {
-    
+    // MARK: - IBOutets -
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var imageHero: UIImageView!
     @IBOutlet weak var nameHero: UILabel!
     @IBOutlet weak var descriptionHero: UITextView!
+    @IBOutlet weak var loadingView: UIView!
     
+    // MARK: - Delegate -
     var viewModel: DetailViewControllerDelegate?
     
+    // MARK: - Lifecycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-        initViews()
         setObservers()
         viewModel?.onViewAppear()
     }
     
-    func initViews() {
-//        mapView.delegate = self
-    }
-    
-    func setObservers() {
-        viewModel?.viewState = { state in
+    // MARK: - Private functions -
+    private func setObservers() {
+        viewModel?.viewState = { [weak self] state in
             DispatchQueue.main.async {
                 switch state {
                 case .loading(let isLoading):
-                    break
+                    self?.loadingView.isHidden = !isLoading
                 case .update(let hero, let locations):
-                    self.updateViews(hero: hero, locations: locations)
+                    self?.updateViews(hero: hero, locations: locations)
                 }
             }
         }

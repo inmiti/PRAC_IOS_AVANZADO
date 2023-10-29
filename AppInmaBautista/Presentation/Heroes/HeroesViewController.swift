@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Protocol -
 protocol HeroesViewControllerDelegate {
     var viewState: ((HeroesViewState) -> Void)? { get set }
     var heroesCount: Int { get }
@@ -18,9 +19,9 @@ protocol HeroesViewControllerDelegate {
     func detailViewModel(index: Int ) -> DetailViewControllerDelegate?
 }
 
-//var viewState
-
+// MARK: - View States -
 enum HeroesViewState {
+    case uploading(_ isLoading: Bool)
     case updatedData
     case navigateToLogin
     case navigateToDetail
@@ -28,11 +29,14 @@ enum HeroesViewState {
 }
 
 class HeroesViewController: UIViewController {
-    
+    // MARK: - IBOutlets -
+    @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - Delegate -
     var viewModel: HeroesViewControllerDelegate?
     
+    // MARK: - Lifecycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
@@ -42,7 +46,6 @@ class HeroesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Ocultar el botón de retroceso en la barra de navegación
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
@@ -66,7 +69,8 @@ class HeroesViewController: UIViewController {
         }
     }
     
-    func initViews() {
+    //MARK: - Private functions -
+    private func initViews() {
         tableView.register(UINib(nibName: HeroeCell.identifier, bundle: nil) ,
                            forCellReuseIdentifier: HeroeCell.identifier)
         
@@ -74,10 +78,12 @@ class HeroesViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    func setObserver() {
+    private func setObserver() {
         viewModel?.viewState = { [weak self] state in
             DispatchQueue.main.async {
                 switch state {
+                    case .uploading(let isLoading):
+                        self?.loadingView.isHidden = !isLoading
                     case .updatedData:
                         self?.tableView.reloadData()
                     case .navigateToLogin:
@@ -91,19 +97,17 @@ class HeroesViewController: UIViewController {
         }
     }
     
+    // MARK: - IBActions -
     @IBAction func logoutButton(_ sender: Any) {
         viewModel?.logOut()
     }
-    
-    
     @IBAction func mapButton(_ sender: Any) {
         viewModel?.viewState?(.navigateToMap)
     }    
 }
 
-// MARK: Delegate and Data Source
+// MARK: Delegate and Data Source Extension
 extension HeroesViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         HeroeCell.estimatedHeight
     }
@@ -130,5 +134,4 @@ extension HeroesViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "HEROES_TO_DETAIL",
                      sender: indexPath.row)
     }
-    
 }

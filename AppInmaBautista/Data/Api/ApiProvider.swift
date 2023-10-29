@@ -33,9 +33,6 @@ public enum NetworkErrors: Error {
 }
 
 public class ApiProvider: ApiProviderProtocol {
-
-//    private var secureDataProvider: SecureDataProviderProtocol?
-    
     // MARK: - Properties -
     private var baseComponents: URLComponents {
         var components = URLComponents()
@@ -45,8 +42,8 @@ public class ApiProvider: ApiProviderProtocol {
     }
     
     private let session: URLSession
-//    private let token: String? = secureDataProvider?.getToken()
     
+    // MARK: - Initializers -
     init(session:URLSession = .shared) {
         self.session = session
     }
@@ -218,7 +215,6 @@ public class ApiProvider: ApiProviderProtocol {
         let task = session.dataTask(with: request) {data, response, error in
             guard error == nil else {
                 completion(.failure(.unknownError))
-                print("Error unknownError: \(heroID)")
                 return
             }
             
@@ -239,7 +235,6 @@ public class ApiProvider: ApiProviderProtocol {
                 return
             }
             completion(.success(locations))
-            
         }
         task.resume()
     }

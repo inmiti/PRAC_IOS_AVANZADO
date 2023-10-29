@@ -21,6 +21,21 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
+                            <view hidden="YES" contentMode="scaleToFill" id="5IV-Pk-2fN">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="5vQ-Ws-x3z">
+                                        <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="dl9-1P-EvC"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="5vQ-Ws-x3z" firstAttribute="centerX" secondItem="5IV-Pk-2fN" secondAttribute="centerX" id="6Nw-oL-G70"/>
+                                    <constraint firstItem="5vQ-Ws-x3z" firstAttribute="centerY" secondItem="5IV-Pk-2fN" secondAttribute="centerY" id="gaY-nl-fmu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -32,6 +47,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingView" destination="5IV-Pk-2fN" id="kEW-28-Aga"/>
                         <outlet property="mapView" destination="RXy-TT-oyb" id="d8x-Hy-vpx"/>
                     </connections>
                 </viewController>

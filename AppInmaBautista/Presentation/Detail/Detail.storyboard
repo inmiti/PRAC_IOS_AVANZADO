@@ -46,6 +46,21 @@
                                     <constraint firstAttribute="height" constant="128" id="zOz-ob-Flr"/>
                                 </constraints>
                             </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" id="5Y6-YH-nqn">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="k4M-hI-Bnc">
+                                        <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="Z7T-1v-o4a"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="k4M-hI-Bnc" firstAttribute="centerX" secondItem="5Y6-YH-nqn" secondAttribute="centerX" id="Bf4-Ho-a4K"/>
+                                    <constraint firstItem="k4M-hI-Bnc" firstAttribute="centerY" secondItem="5Y6-YH-nqn" secondAttribute="centerY" id="Mik-rz-Kbr"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -68,6 +83,7 @@
                     <connections>
                         <outlet property="descriptionHero" destination="gzr-Mv-gr4" id="VeL-JP-uaD"/>
                         <outlet property="imageHero" destination="Xsd-hE-PTC" id="rGe-Tn-RaA"/>
+                        <outlet property="loadingView" destination="5Y6-YH-nqn" id="kEe-Rn-01n"/>
                         <outlet property="mapView" destination="Rhw-D5-tub" id="xoc-o3-UWN"/>
                         <outlet property="nameHero" destination="F6E-jL-IH5" id="FEC-Yd-cQu"/>
                     </connections>

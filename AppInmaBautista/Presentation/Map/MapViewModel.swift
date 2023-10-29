@@ -8,6 +8,13 @@
 import Foundation
 
 class MapViewModel: MapViewControllerDelegate {
+    //MARK: - Dependecies -
+    private let apiProvider: ApiProviderProtocol
+    private let secureDataProvider: SecureDataProviderProtocol
+    private let coreDataProvider: CoreDataProviderProtocol
+    private let saveDataFromApi: SaveDataFromApiProtocol
+    
+    // MARK: - Properties -
     var viewState: ((MapViewState) -> Void)?
     var heroesDAO: HeroesDAO
     var locations: Locations = []
@@ -17,11 +24,7 @@ class MapViewModel: MapViewControllerDelegate {
         coreDataProvider.loadLocationsDAO().isEmpty == false
     }
     
-    private let apiProvider: ApiProviderProtocol
-    private let secureDataProvider: SecureDataProviderProtocol
-    private let coreDataProvider: CoreDataProviderProtocol
-    private let saveDataFromApi: SaveDataFromApiProtocol
-    
+    // MARK: - Initializers -
     init(heroesDAO: HeroesDAO,
          apiProvider: ApiProviderProtocol,
          secureDataProvider: SecureDataProviderProtocol,
@@ -35,8 +38,9 @@ class MapViewModel: MapViewControllerDelegate {
         self.saveDataFromApi = saveDataFromApi
     }
     
+    // MARK: - Public Funtions -
     func onViewAppear() {
-        viewState?(.loading)
+        viewState?(.loading(true))
     
         let dispatchGroup = DispatchGroup()
         coreDataProvider.deleteAllLocations()
@@ -56,6 +60,7 @@ class MapViewModel: MapViewControllerDelegate {
         dispatchGroup.notify(queue: .main) {
             self.locationsDAO = self.coreDataProvider.loadLocationsDAO()
             self.viewState?(.updatedData(locations: self.locationsDAO))
+            self.viewState?(.loading(false))
         }
     }
 }

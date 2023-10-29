@@ -62,6 +62,21 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" id="GbJ-I9-tmK">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="GBp-CZ-SYr">
+                                        <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="53M-Zk-nN0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="GBp-CZ-SYr" firstAttribute="centerY" secondItem="GbJ-I9-tmK" secondAttribute="centerY" id="DCb-eC-dJX"/>
+                                    <constraint firstItem="GBp-CZ-SYr" firstAttribute="centerX" secondItem="GbJ-I9-tmK" secondAttribute="centerX" id="tO6-6Y-47T"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -76,6 +91,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingView" destination="GbJ-I9-tmK" id="aLT-GI-5Pa"/>
                         <outlet property="tableView" destination="toH-Fm-qRT" id="pgm-FI-nR6"/>
                         <segue destination="rsL-gr-TIA" kind="show" identifier="HEROES_TO_LOGIN" id="bn8-50-5o1"/>
                         <segue destination="eqz-4D-kOg" kind="show" identifier="HEROES_TO_DETAIL" id="Vuf-Qg-GpD"/>

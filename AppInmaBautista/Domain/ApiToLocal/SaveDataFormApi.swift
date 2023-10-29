@@ -7,13 +7,14 @@
 
 import Foundation
 
+// MARK: - Protocol -
 protocol SaveDataFromApiProtocol {
     func saveHeroes(completion: @escaping () -> Void)
     func saveLocations(hero: HeroDAO, completion: @escaping () -> Void)
 }
 
 class SaveDataFromApi: SaveDataFromApiProtocol {
-    
+    // MARK: - Properties -
     private var apiProvider: ApiProviderProtocol
     private var secureDataProvider: SecureDataProviderProtocol
     private var coreDataProvider: CoreDataProviderProtocol
@@ -27,6 +28,7 @@ class SaveDataFromApi: SaveDataFromApiProtocol {
         return secureDataProvider.getToken() ?? ""
     }
     
+    // MARK: - Initializers -
     init(apiProvider: ApiProviderProtocol = ApiProvider(),
          secureDataProvider: SecureDataProviderProtocol = SecureDataProvider(),
          coreDataProvider: CoreDataProviderProtocol = CoreDataProvider() ) {
@@ -35,6 +37,7 @@ class SaveDataFromApi: SaveDataFromApiProtocol {
         self.coreDataProvider = coreDataProvider
     }
     
+    // MARK: - Functions -
     func saveHeroes(completion: @escaping () -> Void) {
         DispatchQueue.global().async {
             self.apiProvider.getHeroes(token: self.token) { [weak self] result in
@@ -66,7 +69,7 @@ class SaveDataFromApi: SaveDataFromApiProtocol {
                             }
                         case .failure(let error):
                             print("Error: \(error)")
-                        }
+                    }
                 }
             }
         }

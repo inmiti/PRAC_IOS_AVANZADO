@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+// MARK: - Protocol -
 protocol CoreDataProviderProtocol {
 //    var moc: NSManagedObjectContext? { get }
     func saveHeroDAO(hero: Hero)
@@ -22,9 +23,11 @@ protocol CoreDataProviderProtocol {
 
 class CoreDataProvider: CoreDataProviderProtocol {
 
-    private var moc: NSManagedObjectContext? { CoreDataStack.shared.persistentContainer.viewContext
+    private var moc: NSManagedObjectContext? {
+        CoreDataStack.shared.persistentContainer.viewContext
     }
     
+    // MARK: - Functions - 
     func saveHeroDAO(hero: Hero) {
         guard let moc,
               let entityHero = NSEntityDescription.entity(forEntityName: HeroDAO.entityName, in: moc) else {return}
@@ -48,7 +51,6 @@ class CoreDataProvider: CoreDataProviderProtocol {
         locationDAO.longitude = location.longitude
         locationDAO.latitude = location.latitude
         locationDAO.heroId = location.hero.id
-//        locationDAO.heroName = location.hero.name
         
         try? moc.save()
     }
@@ -102,7 +104,4 @@ class CoreDataProvider: CoreDataProviderProtocol {
         locations.forEach { moc.delete($0) }
         try? moc.save()
     }
-    
-    
-    
 }

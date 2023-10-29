@@ -19,5 +19,4 @@ class LocationDAO: NSManagedObject {
     @NSManaged var longitude: String?
     @NSManaged var latitude: String?
     @NSManaged var heroId: String?
-//    @NSManaged var heroName: String?
 }

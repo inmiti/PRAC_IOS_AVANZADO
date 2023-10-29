@@ -16,7 +16,8 @@ class LoginViewModel: LoginViewControllerDelegate {
     var viewState: ((LoginViewState) -> Void)?
     var heroesViewModel: HeroesViewControllerDelegate {
         HeroesViewModel(apiProvider: apiProvider,
-                        secureDataProvider: secureDataProvider)
+                        secureDataProvider: secureDataProvider
+        )
     }
     
     // MARK: - Initializers -
@@ -39,9 +40,9 @@ class LoginViewModel: LoginViewControllerDelegate {
             }
             
             self.doLoggin(email: email, password: password)
-            
         }
     }
+    
     // MARK: - Private functions -
     private func isvalid(email:String?) -> Bool {
         email?.isEmpty == false && (email?.contains("@") ?? false)
@@ -61,7 +62,5 @@ class LoginViewModel: LoginViewControllerDelegate {
                     print("Error: \(error)")
             }
         }
-        
     }
-  
 }

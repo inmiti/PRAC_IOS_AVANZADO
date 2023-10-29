@@ -24,8 +24,10 @@ enum SplashViewState {
 class SplashViewController: UIViewController {
     // MARK: - Outlets -
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    // MARK: - Properties -
+    
+    // MARK: - Delegate -
     var viewModel: SplashViewControllerDelegate?
+    
     // MARK: - Lyfecicle -
     override func viewDidLoad() {
         super.viewDidLoad()
