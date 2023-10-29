@@ -15,7 +15,7 @@ protocol MapViewControllerDelegate {
 }
 enum MapViewState {
     case loading
-    case updatedData(locations: Locations )
+    case updatedData(locations: LocationsDAO )
     
 }
 class MapViewController: UIViewController {
@@ -46,11 +46,11 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func updateView(locations: Locations) {
+    private func updateView(locations: LocationsDAO) {
         locations.forEach {
             mapView.addAnnotation(
                 HeroLocationAnnotation(
-                    title: $0.hero.id,
+//                    title: $0.heroId,
                     coordinate: .init(latitude: Double($0.latitude ?? "") ?? 0,
                                       longitude: Double($0.longitude ?? "") ?? 0)
                 )

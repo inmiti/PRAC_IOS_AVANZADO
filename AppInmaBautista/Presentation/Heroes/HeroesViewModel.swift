@@ -32,7 +32,7 @@ class HeroesViewModel: HeroesViewControllerDelegate {
     
     
     var mapViewModel: MapViewControllerDelegate {
-        MapViewModel(heroes: heroesDAO,
+        MapViewModel(heroesDAO: heroesDAO,
                      apiProvider: apiProvider,
                      secureDataProvider: secureDataProvider,
                      coreDataProvider: coreDataProvider

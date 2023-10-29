@@ -9,7 +9,7 @@ import Foundation
 
 protocol SaveDataFromApiProtocol {
     func saveHeroes(completion: @escaping () -> Void)
-    func saveLocations(heros: HeroesDAO, completion: @escaping () -> Void)
+    func saveLocations(hero: HeroDAO, completion: @escaping () -> Void)
 }
 
 class SaveDataFromApi: SaveDataFromApiProtocol {
@@ -43,7 +43,7 @@ class SaveDataFromApi: SaveDataFromApiProtocol {
                     DispatchQueue.main.async {
                         self?.heroes = heroes
                         self?.coreDataProvider.deleteAllHeroes()
-                        self?.heroes.forEach { self?.coreDataProvider.saveHeroDAO(hero: $0)}
+                        self?.heroes.forEach {self?.coreDataProvider.saveHeroDAO(hero: $0)}
                         self?.heroesDAO = self?.coreDataProvider.loadHeroesDAO() ?? []
                         completion()
                     }
@@ -54,31 +54,20 @@ class SaveDataFromApi: SaveDataFromApiProtocol {
         }
     }
     
-    func saveLocations(heros: HeroesDAO, completion: @escaping () -> Void)  {
-        coreDataProvider.deleteAllLocations()
+    func saveLocations(hero: HeroDAO, completion: @escaping () -> Void)  {
         DispatchQueue.global().async {
-            var locationsCount = heros.count
-            for hero in heros {
-                self.apiProvider.getLocations(token: self.token, heroID: hero.id) { [weak self] result in
+                self.apiProvider.getLocations(token: self.token, heroID: hero.id ) { [weak self] result in
                     switch result {
-                    case .success(let locations):
-                        DispatchQueue.main.async {
-                            self?.locations = locations
-                            self?.locations.forEach{self?.coreDataProvider.saveLocationDAO(location: $0)}
-//                            self?.locationsDAO = self?.coreDataProvider.loadLocationsDAO() ?? []
+                        case .success(let locations):
+                            DispatchQueue.main.async {
+                                self?.locations = locations
+                                self?.locations.forEach{self?.coreDataProvider.saveLocationDAO(location: $0)}
+                                completion()
+                            }
+                        case .failure(let error):
+                            print("Error: \(error)")
                         }
-                    case .failure(let error):
-                        print("Error: \(error)")
-                    }
-                    self?.locationsDAO = self?.coreDataProvider.loadLocationsDAO() ?? []
-                    locationsCount -= 1
-                    if locationsCount == 0 {
-                        completion()
-                    }
                 }
-                
-                // Incluir notification center
             }
         }
     }
-}
