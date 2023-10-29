@@ -13,7 +13,7 @@ Si no hay token, hacemos login:
 
 Tanto si hay token, desde el splash, como si no hay token y nos loggeamos, desde login, accedemos a la pantalla principal: 
 
-<img width="387" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/bf1fca2d-143b-4d09-88c9-b9746641953e">
+<img width="334" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/49289b7c-8767-465e-b7b8-69871c98ee23">
 
 Desde el listado de héroes podemos aceder al detalle del héroe, a map y se ha incluido el botón de logout para salir de la sessión, en la que se borran todos los datos:
 
