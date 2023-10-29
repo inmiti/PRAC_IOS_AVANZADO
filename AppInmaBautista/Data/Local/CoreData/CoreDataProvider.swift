@@ -62,7 +62,6 @@ class CoreDataProvider: CoreDataProviderProtocol {
             print("No hay datos de héroes almacenados")
             return []
         }
-        print("Heroes en coredata: \(heroes)")
         return heroes
     }
     
@@ -73,7 +72,6 @@ class CoreDataProvider: CoreDataProviderProtocol {
             print("No hay datos de héroes almacenados")
             return []
         }
-        print("Localizaciones de Heroes coredata: \(locations)")
         return locations
     }
     
@@ -85,7 +83,6 @@ class CoreDataProvider: CoreDataProviderProtocol {
             print("Noy hay ese héroe almacenado")
             return []
         }
-        print("Heroe con id:\(heroe) ")
         return heroe
     }
     

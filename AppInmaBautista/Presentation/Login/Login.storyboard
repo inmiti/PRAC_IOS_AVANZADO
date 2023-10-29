@@ -47,7 +47,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lqj-Vt-Nf7">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kt-G7-Vn5">
                                         <rect key="frame" x="0.0" y="38" width="361" height="50"/>
@@ -80,6 +80,27 @@
                                     <constraint firstAttribute="height" constant="27" id="keT-y7-5BP"/>
                                 </constraints>
                             </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" id="BNh-hO-ibN">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="4TD-iW-w5y">
+                                        <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hje-AU-VVI">
+                                        <rect key="frame" x="16" y="365" width="97" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="XIt-0S-Cmr"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="4TD-iW-w5y" firstAttribute="centerY" secondItem="BNh-hO-ibN" secondAttribute="centerY" id="XN3-ah-mpy"/>
+                                    <constraint firstItem="4TD-iW-w5y" firstAttribute="centerX" secondItem="BNh-hO-ibN" secondAttribute="centerX" id="mYu-A2-rNW"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -107,6 +128,7 @@
                         <outlet property="emailTextField" destination="yZ7-n7-4Sc" id="RRg-sF-CVh"/>
                         <outlet property="errorEmailLabel" destination="S4c-TU-buV" id="2G1-uv-yiz"/>
                         <outlet property="errorPasswordLabel" destination="1Kt-G7-Vn5" id="Dgx-Ta-NFu"/>
+                        <outlet property="loadingView" destination="BNh-hO-ibN" id="sCZ-Xd-c5w"/>
                         <outlet property="passwordTextField" destination="Lqj-Vt-Nf7" id="el9-Nd-AnU"/>
                         <segue destination="tno-Mz-DzA" kind="show" identifier="LOGIN_TO_HEROES" id="1SI-iJ-3WD"/>
                     </connections>

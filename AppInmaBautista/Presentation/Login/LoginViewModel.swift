@@ -29,11 +29,18 @@ class LoginViewModel: LoginViewControllerDelegate {
     
     // MARK: - Public functions -
     func loginButtonPressed(email: String?, password: String?) {
+        viewState?(.loading(true))
+        
+        defer {
+                self.viewState?(.loading(false))
+            }
+        
         DispatchQueue.global().async {
             guard self.isvalid(email: email) else {
                 self.viewState?(.errorEmail(error: "Introduzca un email válido"))
                 return
             }
+            
             guard self.isvalid(password: password) else {
                 self.viewState?(.errorPassword(error: "Introduzca un password válido"))
                 return
