@@ -93,6 +93,7 @@ class HeroesViewModel: HeroesViewControllerDelegate {
         return DetailViewModel(
                 hero: selectedHero,
                 apiProvider: apiProvider,
-                secureDataProvider: secureDataProvider)
+                secureDataProvider: secureDataProvider,
+                coreDataProvider: coreDataProvider)
     }
 }

@@ -15,7 +15,7 @@ protocol CoreDataProviderProtocol {
     func saveLocationDAO(location: Location)
     func loadHeroesDAO() -> HeroesDAO
     func loadLocationsDAO() -> LocationsDAO
-    
+    func loadLocationsById(id: String) -> LocationsDAO
     func loadHeroeById(id: String) -> HeroesDAO
     func deleteAllHeroes()
     func deleteAllLocations()
@@ -70,6 +70,16 @@ class CoreDataProvider: CoreDataProviderProtocol {
         guard let moc,
               let locations = try? moc.fetch(fetchLocationsDAO) else {
             print("No hay datos de héroes almacenados")
+            return []
+        }
+        return locations
+    }
+    func loadLocationsById(id: String) -> LocationsDAO {
+        let fetchLocationsDAO = NSFetchRequest<LocationDAO>(entityName: LocationDAO.entityName)
+        fetchLocationsDAO.predicate = NSPredicate(format: "heroId = \(id)")
+        guard let moc,
+              let locations = try? moc.fetch(fetchLocationsDAO) else {
+            print("Noy localizaciones almacenadas para ese héroe")
             return []
         }
         return locations

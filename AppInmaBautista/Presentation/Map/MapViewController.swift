@@ -17,7 +17,7 @@ protocol MapViewControllerDelegate {
 // MARK: - ViewState -
 enum MapViewState {
     case loading(_ isLoading: Bool)
-    case updatedData(locations: LocationsDAO )
+    case updatedData(heroes: HeroesDAO, locations: LocationsDAO )
 }
 
 class MapViewController: UIViewController {
@@ -47,20 +47,20 @@ class MapViewController: UIViewController {
                 switch state {
                     case .loading(let isLoading):
                         self?.loadingView.isHidden = !isLoading
-                    case .updatedData(locations: let locations):
-                        self?.updateView(locations: locations)
+                case .updatedData(heroes: let heroes, locations: let locations):
+                        self?.updateView(heroes: heroes, locations: locations)
                 }
             }
         }
     }
     
-    private func updateView(locations: LocationsDAO) {
-        locations.forEach {
+    private func updateView(heroes: HeroesDAO, locations: LocationsDAO) {
+        locations.forEach { location in
             mapView.addAnnotation(
                 HeroAnnotation(
-//                    title: $0.heroId,
-                    coordinate: .init(latitude: Double($0.latitude ?? "") ?? 0,
-                                      longitude: Double($0.longitude ?? "") ?? 0)
+                    title: (heroes.filter {location.heroId == $0.id}).first?.name,
+                    coordinate: .init(latitude: Double(location.latitude ?? "") ?? 0,
+                                      longitude: Double(location.longitude ?? "") ?? 0)
                 )
             )
         }

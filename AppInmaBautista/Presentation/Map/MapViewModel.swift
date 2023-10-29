@@ -41,7 +41,7 @@ class MapViewModel: MapViewControllerDelegate {
     // MARK: - Public Funtions -
     func onViewAppear() {
         viewState?(.loading(true))
-    
+        
         let dispatchGroup = DispatchGroup()
         coreDataProvider.deleteAllLocations()
 
@@ -56,10 +56,10 @@ class MapViewModel: MapViewControllerDelegate {
                 }
             }
         }
-        
+
         dispatchGroup.notify(queue: .main) {
             self.locationsDAO = self.coreDataProvider.loadLocationsDAO()
-            self.viewState?(.updatedData(locations: self.locationsDAO))
+            self.viewState?(.updatedData(heroes:self.heroesDAO, locations: self.locationsDAO))
             self.viewState?(.loading(false))
         }
     }

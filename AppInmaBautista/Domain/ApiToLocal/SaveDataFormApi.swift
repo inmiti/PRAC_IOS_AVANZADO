@@ -14,6 +14,7 @@ protocol SaveDataFromApiProtocol {
 }
 
 class SaveDataFromApi: SaveDataFromApiProtocol {
+    
     // MARK: - Properties -
     private var apiProvider: ApiProviderProtocol
     private var secureDataProvider: SecureDataProviderProtocol
@@ -59,18 +60,19 @@ class SaveDataFromApi: SaveDataFromApiProtocol {
     
     func saveLocations(hero: HeroDAO, completion: @escaping () -> Void)  {
         DispatchQueue.global().async {
-                self.apiProvider.getLocations(token: self.token, heroID: hero.id ) { [weak self] result in
-                    switch result {
-                        case .success(let locations):
-                            DispatchQueue.main.async {
-                                self?.locations = locations
-                                self?.locations.forEach{self?.coreDataProvider.saveLocationDAO(location: $0)}
-                                completion()
-                            }
-                        case .failure(let error):
-                            print("Error: \(error)")
-                    }
+            self.apiProvider.getLocations(token: self.token, heroID: hero.id ) { [weak self] result in
+                switch result {
+                    case .success(let locations):
+                        DispatchQueue.main.async {
+                            self?.locations = locations
+                            self?.locations.forEach{self?.coreDataProvider.saveLocationDAO(location: $0)}
+                            completion()
+                        }
+                    case .failure(let error):
+                        print("Error: \(error)")
                 }
             }
         }
     }
+}
+

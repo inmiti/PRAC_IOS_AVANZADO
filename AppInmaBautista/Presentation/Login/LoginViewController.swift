@@ -48,12 +48,12 @@ class LoginViewController: UIViewController {
     // MARK: - Lifecycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        initViews()
         setObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Ocultar el botón de retroceso en la barra de navegación
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
         emailTextField.tag = FieldType.email.rawValue
         passwordTextField.delegate = self
         passwordTextField.tag = FieldType.password.rawValue
-
+ 
         view.addGestureRecognizer(
             UITapGestureRecognizer(
                 target: self,
@@ -79,7 +79,6 @@ class LoginViewController: UIViewController {
     }
     
     @objc func dismissKeyboard() {
-        // Ocultar el teclado al pulsar en cualquier punto de la vista
         view.endEditing(true)
     }
     
@@ -89,14 +88,14 @@ class LoginViewController: UIViewController {
                 switch state {
                 case .loading(let isLoading):
                     self?.loadingView.isHidden = !isLoading
-                    case .errorEmail(let error):
-                        self?.errorEmailLabel.text = error
-                        self?.errorEmailLabel.isHidden = (error == nil || error.isEmpty == true)
-                    case .errorPassword(let error):
-                        self?.errorPasswordLabel.text = error
-                        self?.errorPasswordLabel.isHidden = (error == nil || error.isEmpty == true)
-                    case .navigateToHeroes:
-                        self?.performSegue(withIdentifier: "LOGIN_TO_HEROES", sender: nil)
+                case .errorEmail(let error):
+                    self?.errorEmailLabel.text = error
+                    self?.errorEmailLabel.isHidden = false
+                case .errorPassword(let error):
+                    self?.errorPasswordLabel.text = error
+                    self?.errorPasswordLabel.isHidden = false
+                case .navigateToHeroes:
+                    self?.performSegue(withIdentifier: "LOGIN_TO_HEROES", sender: nil)
                 }
             }
         }
@@ -104,6 +103,16 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch FieldType(rawValue: textField.tag) {
+        case .email:
+            errorEmailLabel.isHidden = true
+        case .password:
+            errorPasswordLabel.isHidden = true
+        default: break
+        }
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch FieldType(rawValue: textField.tag) {
             case .email:
