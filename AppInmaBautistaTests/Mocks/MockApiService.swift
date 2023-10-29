@@ -7,10 +7,12 @@
 
 import Foundation
 import AppInmaBautista
+import UIKit
 
 class MockApiService: ApiProviderProtocol {
-    private let responseDataToken: [String: String] = ["token" : "a1b2c3"]
     
+    private let tokenSucceed: Bool = true
+   
     private let responseDataHeroes: [[String:Any]] = [
         [
             "photo": "https://cdn.alfabetajuega.com/alfabetajuega/2020/06/Roshi.jpg?width=300",
@@ -35,6 +37,38 @@ class MockApiService: ApiProviderProtocol {
         ]
     ]
     
-    func getHeroes(token: String?, completion:((AppInmaBautista.Heroes),
-                                (AppInmaBautista.NetworkErrors)) -> Void)
+    private let responseDataLocations: [[String:Any]] = []
+
+    func login(email: String, password: String, completion: @escaping (Result<String, NetworkErrors>) -> Void) {
+        if tokenSucceed {
+            let token = "fakeToken"
+            completion(.success(token))
+        } else {
+            completion(.failure(NetworkErrors.noData))
+        }
+    }
+    
+    func downloadImage(for url: URL, completion: @escaping (Result<UIImage, AppInmaBautista.NetworkErrors>) -> Void) {
+        
+    }
+
+    func getHeroes(token: String?, completion: (@escaping (Result<AppInmaBautista.Heroes, AppInmaBautista.NetworkErrors>) -> Void)) {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: responseDataHeroes)
+            let heroes = try JSONDecoder().decode(Heroes.self,
+                                                   from: data)
+            completion(.success(heroes))
+
+        } catch {
+            completion(.failure(NetworkErrors.decodingFailed))
+        }
+    }
+    
+    func getLocations(token: String?, heroID: String?, completion: @escaping (Result<AppInmaBautista.Locations, AppInmaBautista.NetworkErrors>) -> Void) {
+        
+    }
 }
+
+
+
+

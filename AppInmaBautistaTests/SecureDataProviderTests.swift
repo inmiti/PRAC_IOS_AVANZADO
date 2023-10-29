@@ -13,6 +13,7 @@ final class SecureDataProviderTests: XCTestCase {
     private var sut : SecureDataProviderProtocol!
     
     override func setUp() {
+        super.setUp()
         sut = SecureDataProvider()
     }
 

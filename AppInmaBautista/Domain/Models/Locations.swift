@@ -7,9 +7,9 @@
 
 import Foundation
 
-typealias Locations = [Location]
+public typealias Locations = [Location]
 
-struct Location: Codable {
+public struct Location: Codable {
     
     enum CodingKeys: String, CodingKey{
         case id

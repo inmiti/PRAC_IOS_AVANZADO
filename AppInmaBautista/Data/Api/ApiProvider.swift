@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 
 // MARK: - Protocol -
-protocol ApiProviderProtocol {
+public protocol ApiProviderProtocol {
     func login(email: String,
                password: String,
                completion: @escaping(Result<String, NetworkErrors>) -> Void)
@@ -22,7 +22,7 @@ protocol ApiProviderProtocol {
 }
 
 // MARK: - NetoworkErrors -
-enum NetworkErrors: Error {
+public enum NetworkErrors: Error {
     case notFormedUrl
     case decodingFailed
     case unknownError
@@ -32,7 +32,7 @@ enum NetworkErrors: Error {
     case notLogged
 }
 
-class ApiProvider: ApiProviderProtocol {
+public class ApiProvider: ApiProviderProtocol {
 
 //    private var secureDataProvider: SecureDataProviderProtocol?
     
@@ -58,7 +58,7 @@ class ApiProvider: ApiProviderProtocol {
     }
     
     // MARK: - Public functions -
-    func login(email: String,
+    public func login(email: String,
                password: String,
                completion: @escaping(Result<String, NetworkErrors>) -> Void) {
         var components = baseComponents
@@ -107,7 +107,7 @@ class ApiProvider: ApiProviderProtocol {
         task.resume()
     }
     
-    func downloadImage(for url: URL,
+    public func downloadImage(for url: URL,
                        completion: @escaping(Result< UIImage, NetworkErrors>) -> Void ) {
         let task = session.dataTask(with: url) { data, response, error in
             guard error == nil else {
@@ -134,7 +134,7 @@ class ApiProvider: ApiProviderProtocol {
         task.resume()
     }
     
-    func getHeroes(token: String?,
+    public func getHeroes(token: String?,
                    completion: @escaping(Result<Heroes, NetworkErrors>) -> Void) {
         var components = baseComponents
         components.path = PathAPI.heroes
@@ -188,7 +188,7 @@ class ApiProvider: ApiProviderProtocol {
         task.resume()
     }
     
-    func getLocations(token: String?,
+    public func getLocations(token: String?,
                       heroID: String?,
                       completion: @escaping(Result<Locations, NetworkErrors>) -> Void) {
         var components = baseComponents

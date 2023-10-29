@@ -10,6 +10,7 @@
 		1F9CAB3F2AEA5CE000A0CA15 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9CAB3E2AEA5CE000A0CA15 /* Locations.swift */; };
 		1F9CAB412AEA787000A0CA15 /* LocationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9CAB402AEA787000A0CA15 /* LocationDAO.swift */; };
 		1F9CAB442AEAAF2500A0CA15 /* HeroLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9CAB432AEAAF2500A0CA15 /* HeroLocationAnnotation.swift */; };
+		1FADC3452AEDB47F00B6B3EF /* CoreDataProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FADC3442AEDB47F00B6B3EF /* CoreDataProviderTest.swift */; };
 		1FCFEE822AE826F8004F38AB /* HeroDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFEE812AE826F8004F38AB /* HeroDAO.swift */; };
 		1FCFEE852AE828B9004F38AB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFEE842AE828B9004F38AB /* CoreDataStack.swift */; };
 		1FCFEE872AE85C12004F38AB /* CoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCFEE862AE85C12004F38AB /* CoreDataProvider.swift */; };
@@ -70,6 +71,7 @@
 		1F9CAB3E2AEA5CE000A0CA15 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		1F9CAB402AEA787000A0CA15 /* LocationDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDAO.swift; sourceTree = "<group>"; };
 		1F9CAB432AEAAF2500A0CA15 /* HeroLocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroLocationAnnotation.swift; sourceTree = "<group>"; };
+		1FADC3442AEDB47F00B6B3EF /* CoreDataProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProviderTest.swift; sourceTree = "<group>"; };
 		1FCFEE812AE826F8004F38AB /* HeroDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDAO.swift; sourceTree = "<group>"; };
 		1FCFEE842AE828B9004F38AB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		1FCFEE862AE85C12004F38AB /* CoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvider.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				1FE071C92AED67F90018A212 /* Mocks */,
 				1FE276292AE2922B00F35082 /* SecureDataProviderTests.swift */,
 				1FE071CA2AED682C0018A212 /* ApiProviderTest.swift */,
+				1FADC3442AEDB47F00B6B3EF /* CoreDataProviderTest.swift */,
 			);
 			path = AppInmaBautistaTests;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				1FE071CD2AED6D820018A212 /* MockApiService.swift in Sources */,
 				1FE2762A2AE2922B00F35082 /* SecureDataProviderTests.swift in Sources */,
 				1FE071CB2AED682C0018A212 /* ApiProviderTest.swift in Sources */,
+				1FADC3452AEDB47F00B6B3EF /* CoreDataProviderTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
