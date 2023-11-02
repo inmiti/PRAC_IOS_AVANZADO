@@ -5,7 +5,6 @@ Se trata de una aplicación móvil de Dragon Ball, realizada en IOS, aplicando l
 
 En primer lugar hay un splash que redirige a login si no hay token en keychain:
 
-<img width="368" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/4650e7c4-05d1-48d5-96f0-6f40b03da9db">
 <img width="340" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/5e16733b-d32c-4bdc-a510-bbf33bfc2abc">
 
 
