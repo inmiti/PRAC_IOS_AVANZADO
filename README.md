@@ -6,6 +6,8 @@ Se trata de una aplicación móvil de Dragon Ball, realizada en IOS, aplicando l
 En primer lugar hay un splash que redirige a login si no hay token en keychain:
 
 <img width="368" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/4650e7c4-05d1-48d5-96f0-6f40b03da9db">
+<img width="340" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/5e16733b-d32c-4bdc-a510-bbf33bfc2abc">
+
 
 Si no hay token, hacemos login:
 
@@ -13,11 +15,12 @@ Si no hay token, hacemos login:
 
 Tanto si hay token, desde el splash, como si no hay token y nos loggeamos, desde login, accedemos a la pantalla principal: 
 
-<img width="334" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/49289b7c-8767-465e-b7b8-69871c98ee23">
+<img width="347" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/c5a476ec-194e-4301-bf68-06ba2611333a">
+
 
 Desde el listado de héroes podemos aceder al detalle del héroe, a map y se ha incluido el botón de logout para salir de la sessión, en la que se borran todos los datos:
 
-<img width="340" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/831b94c7-94a7-4978-b509-8cc7d9443a60">
-<img width="352" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/2a6be30a-363b-4c9e-89ac-89ea83d391da">
+<img width="332" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/c5de12dd-f584-4ea8-87c3-ec85ead19d67">
+<img width="341" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/36488c64-e2fb-4320-af27-d96c0a4773b4">
 
 
