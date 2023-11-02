@@ -9,7 +9,7 @@ En primer lugar hay un splash que redirige a login si no hay token en keychain:
 
 Si no hay token, hacemos login:
 
-<img width="339" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/1944be0b-d614-449d-9099-e3c2d626dd11">
+<img width="337" alt="image" src="https://github.com/inmiti/PRAC_IOS_AVANZADO/assets/118215654/777c03ae-03db-4eb8-a32b-e52dbf0612a3">
 
 Tanto si hay token, desde el splash, como si no hay token y nos loggeamos, desde login, accedemos a la pantalla principal: 
 
